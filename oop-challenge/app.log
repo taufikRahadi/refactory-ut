@@ -1,0 +1,23 @@
+[Wed Jul 22 2020 18:59:16 GMT+0700 (Western Indonesia Time)] EMERGENCY: System hung. Contact system administrator immediately!
+[Wed Jul 22 2020 18:59:19 GMT+0700 (Western Indonesia Time)] NOTICE: someone loves your status
+[Wed Jul 22 2020 19:01:41 GMT+0700 (Western Indonesia Time)] INFO: This is an information about something.
+[Wed Jul 22 2020 19:04:34 GMT+0700 (Western Indonesia Time)] NOTICE: someone loves your status
+[Wed Jul 22 2020 19:04:39 GMT+0700 (Western Indonesia Time)] ERROR: We can't divide any numbers by zero.
+[Wed Jul 22 2020 19:04:41 GMT+0700 (Western Indonesia Time)] INFO: This is an information about something.
+[Wed Jul 22 2020 19:04:42 GMT+0700 (Western Indonesia Time)] ERROR: We can't divide any numbers by zero.
+[Wed Jul 22 2020 19:04:43 GMT+0700 (Western Indonesia Time)] DEBUG: this is debug message
+[Wed Jul 22 2020 19:04:45 GMT+0700 (Western Indonesia Time)] EMERGENCY: System hung. Contact system administrator immediately!
+[Wed Jul 22 2020 19:04:46 GMT+0700 (Western Indonesia Time)] INFO: This is an information about something.
+[Wed Jul 22 2020 19:04:48 GMT+0700 (Western Indonesia Time)] ALERT: achtung! achtung!
+[Wed Jul 22 2020 19:04:49 GMT+0700 (Western Indonesia Time)] DEBUG: this is debug message
+[Wed Jul 22 2020 19:04:51 GMT+0700 (Western Indonesia Time)] CRITICAL: Medic!! We've got critical damages.
+[Wed Jul 22 2020 19:11:05 GMT+0700 (Western Indonesia Time)] CRITICAL: Medic!! We've got critical damages.
+[Wed Jul 22 2020 19:11:08 GMT+0700 (Western Indonesia Time)] ERROR: We can't divide any numbers by zero.
+[Wed Jul 22 2020 19:25:57 GMT+0700 (Western Indonesia Time)] INFO: This is an information about something.
+[Wed Jul 22 2020 19:35:41 GMT+0700 (Western Indonesia Time)] CRITICAL: Medic!! We've got critical damages.
+[Wed Jul 22 2020 19:35:47 GMT+0700 (Western Indonesia Time)] EMERGENCY: System hung. Contact system administrator immediately!
+[Wed Jul 22 2020 19:36:07 GMT+0700 (Western Indonesia Time)] WARNING: Insufficient funds
+[2020-07-23T03:27:32.119Z] EMERGENCY: System hung. Contact system administrator immediately!
+[2020-07-23T03:30:33.561Z] CRITICAL: Medic, we've got critical damage
+[2020-07-23T03:55:55.597Z] CRITICAL: Medic, we've got critical damage
+[2020-07-23T03:55:55.598Z] ALERT: emang bangsat
