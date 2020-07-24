@@ -1,3 +1,3 @@
 ## Assignment Bootcamp Refactory
 
-Checkout branch untuk liat submission tugas
+Udah sempat explore pake method lain di jest, tapi terhapus semua karena ga sengaja ke revert :')
