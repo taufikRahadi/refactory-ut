@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "jest": "^26.1.0"
+  },
+  "name": "unit-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/taufikRahadi/refactory-ut.git",
+  "author": "Taufik Rahadi <taufikrahadi1@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  }
+}

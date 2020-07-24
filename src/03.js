@@ -1,0 +1,1 @@
+module.exports = mebi => mebi * 1024
