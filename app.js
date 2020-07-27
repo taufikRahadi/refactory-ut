@@ -138,17 +138,20 @@ program.command('ip-external', 'returns public ip address')
         logger.info(await publicIp.v4())
     })
 
-const scraperjs = require('scraperjs')
+const axios = require('axios')
+const cheerio = require('cheerio')
 program.command('headlines', 'fetch kompas.com headlines')
-    .action(async ({ logger }) => {
-        scraperjs.StaticScraper.create('https://kompas.com/')
-            .scrape(function($) {
-                return $(".article__link").map(function() {
-                    return $(this).text();
-                }).get();
+    .action(async () => {
+        const html = await axios.get('https://indeks.kompas.com/headline')
+        const $ = await cheerio.load(html.data)
+        let data = []
+
+        $('.article__list').each((i, elem) => {
+            data.push({
+                title: $(elem).find('.article__link').text(),
+                url: $(elem).find('.article__link').attr('href')
             })
-            .then(function(news) {
-                logger.info(news.map(val => 'title : ' + val).join('\n'))
-            })
+        })
+        console.log(data)
     })
 program.run()
