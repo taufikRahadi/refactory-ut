@@ -125,19 +125,21 @@ program.command('random', 'returns a random string')
         }
     })
 
-
+// task 6
 const privateIp = require('internal-ip')
 program.command('ip', 'returns private ip address')
     .action(async ({ logger }) => {
         logger.info(await privateIp.v4())
     })
 
+// task 7
 const publicIp = require('public-ip')
 program.command('ip-external', 'returns public ip address')
     .action(async ({ logger }) => {
         logger.info(await publicIp.v4())
     })
 
+// task 8
 const axios = require('axios')
 const cheerio = require('cheerio')
 program.command('headlines', 'fetch kompas.com headlines')
@@ -155,6 +157,7 @@ program.command('headlines', 'fetch kompas.com headlines')
         console.log(data)
     })
 
+// task 9
 const converCsvToXlsx = require('@aternus/csv-to-xlsx')
 const { convert } = require('xlsx-converter')
 const path = require('path')
@@ -174,5 +177,30 @@ program.command('convert', 'convert csv to xlsx')
         } else {
             
         }
+    })
+
+// task 10
+const captureWebsite = require('capture-website')
+program.command('screenshot', 'capture argument web')
+    .argument('<url>', 'given url to website')
+    .option('--output <output>', 'file destination')
+    .action(async ({ logger, args, options }) => {
+        await captureWebsite.file(args.url, options.output)
+        logger.info('captured and saved file ' + options.output)
+    })
+
+// task 11
+const fs = require('fs')
+program.command('screenshot-list', 'capture a screenshot from url list')
+    .argument('<file>', 'input url list file')
+    .option('--format <format>', 'image format')
+    .action(async ({ logger, args, options }) => {
+        fs.readFile('list.txt', 'utf8', (err, data) => {
+            if(err) return logger.info(err)
+            data.split('\n').forEach(async url => {
+                await captureWebsite.file(url, url.split('/').join('-') + '.' + options.format)
+            })
+        })
+        logger.info('saved')
     })
 program.run()
