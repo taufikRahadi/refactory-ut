@@ -1,0 +1,16 @@
+{
+  "name": "cli-app-challenge",
+  "version": "1.0.0",
+  "description": "Command Line App - Challenge Submission",
+  "main": "index.js",
+  "repository": "https://github.com/taufikRahadi/refactory-ut.git",
+  "author": "Taufik Rahadi <taufikrahadi1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@caporal/core": "^2.0.2",
+    "caporal": "^1.4.0",
+    "externalip": "^1.0.2",
+    "internal-ip": "^6.0.0",
+    "public-ip": "^4.0.2"
+  }
+}
