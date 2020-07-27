@@ -5,43 +5,43 @@ const { program } = require('@caporal/core')
 // task 1
 program.command('lowercase', 'convert string to lowercase letter')
     .argument('<string>', 'input string')
-    .action(({ logger, args, options }) => {
+    .action(({ logger, args }) => {
         logger.info(args.string.toLowerCase())
     })
 
 program.command('uppercase', 'convert string to uppercase letter')
     .argument('<string>', 'input string')
-    .action(({ logger, args, options }) => {
+    .action(({ logger, args }) => {
         logger.info(args.string.toUpperCase())
     })
 
 program.command('capitalize', 'capitalize string')
     .argument('<string>', 'input string')
-    .action(({ logger, args, options }) => {
+    .action(({ logger, args }) => {
         logger.info(args.string.split(' ').map(val => val.toLowerCase().replace(val.charAt(0), val.charAt(0).toUpperCase())).join(' '))
     })
 
 // task 2
 program.command('add', 'add all argumeents')
-    .argument('<number...>', 'Number to add')
+    .argument('<number...>', 'Number to add', { validator: program.NUMBER })
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a + b))
     })
 
 program.command('subtract', 'subtract all arguments')
-    .argument('<number...>', 'number to subtract')
+    .argument('<number...>', 'number to subtract', { validator: program.NUMBER })
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a - b))
     })
 
 program.command('multiply', 'multiply all arguments')
-    .argument('<number...>', 'number to multiply')
+    .argument('<number...>', 'number to multiply', { validator: program.NUMBER })
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a * b))
     })
 
 program.command('divide', 'divide all arguments')
-    .argument('<number...>', 'number to divide')
+    .argument('<number...>', 'number to divide', { validator: program.NUMBER })
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a / b))
     })
