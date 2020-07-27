@@ -154,4 +154,25 @@ program.command('headlines', 'fetch kompas.com headlines')
         })
         console.log(data)
     })
+
+const converCsvToXlsx = require('@aternus/csv-to-xlsx')
+const { convert } = require('xlsx-converter')
+const path = require('path')
+program.command('convert', 'convert csv to xlsx')
+    .argument('<file...>', 'input file to convert')
+    .action(({ logger, args }) => {
+        if(args.file[0].split('.')[1].match(/csv/)) {
+            let source = path.join(__dirname, args.file[0])
+            let destination = path.join(__dirname, args.file[1])
+
+            try {
+                converCsvToXlsx(source, destination)
+                logger.info('converted')
+            } catch (e) {
+                logger.info(e.toString())
+            }
+        } else {
+            
+        }
+    })
 program.run()

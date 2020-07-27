@@ -7,6 +7,7 @@
   "author": "Taufik Rahadi <taufikrahadi1@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@aternus/csv-to-xlsx": "^1.0.15",
     "@caporal/core": "^2.0.2",
     "axios": "^0.19.2",
     "caporal": "^1.4.0",
@@ -14,6 +15,7 @@
     "externalip": "^1.0.2",
     "internal-ip": "^6.0.0",
     "public-ip": "^4.0.2",
-    "scraperjs": "^1.2.0"
+    "scraperjs": "^1.2.0",
+    "xlsx-converter": "^0.1.0"
   }
 }
