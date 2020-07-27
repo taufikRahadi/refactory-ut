@@ -23,25 +23,25 @@ program.command('capitalize', 'capitalize string')
 
 // task 2
 program.command('add', 'add all argumeents')
-    .argument('<number...>', 'Number to add', { validator: program.NUMBER })
+    .argument('<number...>', 'Number to add')
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a + b))
     })
 
 program.command('subtract', 'subtract all arguments')
-    .argument('<number...>', 'number to subtract', { validator: program.NUMBER })
+    .argument('<number...>', 'number to subtract')
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a - b))
     })
 
 program.command('multiply', 'multiply all arguments')
-    .argument('<number...>', 'number to multiply', { validator: program.NUMBER })
+    .argument('<number...>', 'number to multiply')
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a * b))
     })
 
 program.command('divide', 'divide all arguments')
-    .argument('<number...>', 'number to divide', { validator: program.NUMBER })
+    .argument('<number...>', 'number to divide')
     .action(({ logger, args }) => {
         logger.info(args.number.reduce((a, b) => a / b))
     })
@@ -77,22 +77,20 @@ const upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const charset = [...lowerChar, ...numChar, ...upperChar]
 
 program.command('random', 'returns a random string')
-    .option('--charlength <charlength>', 'length of the string', { 
-        validator: program.NUMBER, 
+    .option('--charlength <charlength>', 'length of the string', {
         default: 32 
     })
-    
-    // .option('--uppercase <uppercase>', 'uppercase or not')
-    // .option('--lowercase <lowercase>', 'lowercase or not')
     .action(({ logger, options }) => {
-        const charlength = options.charlength
-        const result = charLoop([...lowerChar, ...numChar, ...upperChar], charlength)
+        const result = charLoop([...lowerChar, ...numChar, ...upperChar], options.charlength)
         logger.info(result)
     })
     .option('--letters <letters>', 'contain a letter or not', { validator: program.BOOLEAN, default: true })
     .action(({ logger, options }) => {
         if(!options.letters) {
             const result = charLoop([...numChar], options.charlength)
+            logger.info(result)
+        } else {
+            const result = charLoop(charset, options.charlength)
             logger.info(result)
         }
     })
@@ -101,12 +99,18 @@ program.command('random', 'returns a random string')
         if(!options.numbers) {
             const result = charLoop([...lowerChar, ...upperChar], options.charlength)
             logger.info(result)
+        } else {
+            const result = charLoop(charset, options.charlength)
+            logger.info(result)
         }
     })
     .option('--uppercase <uppercase>', 'uppercase or not')
     .action(({ logger, options }) => {
         if(options.uppercase) {
             const result = charLoop(charset, options.charlength).toUpperCase()
+            logger.info(result)
+        } else {
+            const result = charLoop(charlength, options.charlength)
             logger.info(result)
         }
     })
@@ -115,8 +119,12 @@ program.command('random', 'returns a random string')
         if(options.lowercase) {
             const result = charLoop(charset, options.charlength).toLowerCase()
             logger.info(result)
+        } else {
+            const result = charLoop(charset, options.charlength)
+            logger.info(result)
         }
     })
+
 
 const privateIp = require('internal-ip')
 program.command('ip', 'returns private ip address')
