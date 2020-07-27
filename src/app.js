@@ -129,4 +129,18 @@ program.command('ip-external', 'returns public ip address')
     .action(async ({ logger }) => {
         logger.info(await publicIp.v4())
     })
+
+const scraperjs = require('scraperjs')
+program.command('headlines', 'fetch kompas.com headlines')
+    .action(async ({ logger }) => {
+        scraperjs.StaticScraper.create('https://kompas.com/')
+            .scrape(function($) {
+                return $(".article__link").map(function() {
+                    return $(this).text();
+                }).get();
+            })
+            .then(function(news) {
+                logger.info(news.map(val => 'title : ' + val).join('\n'))
+            })
+    })
 program.run()

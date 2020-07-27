@@ -11,6 +11,7 @@
     "caporal": "^1.4.0",
     "externalip": "^1.0.2",
     "internal-ip": "^6.0.0",
-    "public-ip": "^4.0.2"
+    "public-ip": "^4.0.2",
+    "scraperjs": "^1.2.0"
   }
 }
