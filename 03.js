@@ -1,11 +1,18 @@
-const print = () => new Promise((resolve, reject) => {
-    for (let i = 1; i <= 3; i++) {
-        setTimeout(() => {
-            resolve(i)
-        }, 1000);
-    }
-})
+const print = () => {
+    return new Promise((resolve,reject) => {
+        for (let i = 1; i <= 3; i++) {
+            setTimeout(() => {
+                resolve(i)
+            }, 1000);
+        }
+    }).then(i => {
+        Promise.resolve(i)
+            .then(print())
+            .then(console.log.bind(console))
+    })
+}
 
-print().then((angka) => {
-    console.log(angka + ' Done')
-})
+(() => {
+    const out = print()
+    console.log(out);    
+})()
