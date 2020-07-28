@@ -3,12 +3,8 @@ const axios = require('axios')
 axios.default.defaults.baseURL = 'https://jsonplaceholder.typicode.com'
 
 const getUserById = async id => {
-    try {
-        const request = await axios.get('/users/' + id)
-        return request.data
-    } catch(e) {
-        throw Error(e.statusText)
-    }
+    const request = await axios.get('/users/' + id)
+    return request.data
 }
 
 const getPosts = async () => {
@@ -16,7 +12,7 @@ const getPosts = async () => {
         const request = await axios.get('/posts')
         return Promise.all(request.data
             .map(async post => { 
-                post['users'] = await getUserById(post.userId) 
+                post['user'] = await getUserById(post.userId) 
                 return post 
             }))
                 .then(posts => Promise.resolve(posts))
