@@ -1,0 +1,13 @@
+{
+  "name": "refactory-ut",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/taufikRahadi/refactory-ut.git",
+  "author": "Taufik Rahadi <taufikrahadi1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@caporal/core": "^2.0.2",
+    "sequelize": "^6.3.3",
+    "sequelize-cli": "^6.2.0"
+  }
+}
