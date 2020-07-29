@@ -1,3 +1,10 @@
-## Assignment Bootcamp Refactory
+# Todo dengan caporal cli
 
-Checkout branch untuk liat submission tugas
+#### Command list
+* list
+* add <"task">
+* update <task_id>
+* del <task_id>
+* clear
+* done <task_id>
+* undone <task_id>
