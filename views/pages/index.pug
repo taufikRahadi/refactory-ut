@@ -1,0 +1,17 @@
+extends ../layouts.pug
+
+block content
+    .row.justify-content-center.mt-5.ml-0.mr-0
+        .col-8
+            h3.font-weight-bold.text-white Tambah Task Baru
+            .card(class="bg-transparent text-white p-3")
+                include ../components/task-form.pug
+
+    div(class="row justify-content-center mr-0 ml-0")
+        div(class="col-8 mb-5")
+            div(class="mt-5")
+                h3.font-weight-bold.text-white List Task
+                div(class="accordion" id="todo-list")
+                    each task in tasks
+                        include ../components/list-box.pug
+                    

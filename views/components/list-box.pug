@@ -1,0 +1,10 @@
+div(class="card bg-transparent mt-2 shadow")
+    .card-body
+        h5(class="mb-0 card-title")
+            button(type="button"  id=`title-${task._id}` class="btn font-weight-bold text-white" data-toggle="collapse" data-target=`#desc-${task._id}` aria-expanded="true" aria-controls=`desc-${task._id}`)=task.title
+                span(class=`badge badge-pill badge-${task.status ? 'success' : 'secondary'}`)=task.status ? 'Done' : 'Need to be done'
+        //- h6(class="ml-3 mb-2 card-subtitle text-muted")= task.status ? "Done" : "Need to be done"
+        
+        div(id=`desc-${task._id}` class="collapse" aria-labelledby="" data-parent="#todo-list")
+            p.pl-2.text-white=task.description
+            include ../components/action-button.pug

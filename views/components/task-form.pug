@@ -1,0 +1,19 @@
+form(action="http://localhost:5000/" method="POST")
+    if task
+        input(type="hidden" name="_id" value=task._id)
+    .form-group
+        label Todo Task
+        input(type="text" name="title" value=`${task ? task.title : ''}` class="bg-transparent text-white form-control")
+
+    .form-group
+        label Task Description
+        textarea(class="form-control bg-transparent text-white", cols="30", rows="3" name="description")=task ? task.description : ''
+    
+    if task
+        .form-group
+            label Status
+            select(class="form-control bg-transparent text-white" name="status")
+                each stats in [1, 0]
+                    option(value=stats selected=stats==task.status)=stats ? 'true' : 'false'
+
+    button(class="btn btn-light" type="submit") Simpan
