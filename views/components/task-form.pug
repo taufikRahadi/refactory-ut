@@ -14,6 +14,6 @@ form(action="http://localhost:5000/" method="POST")
             label Status
             select(class="form-control bg-transparent text-white" name="status")
                 each stats in [1, 0]
-                    option(value=stats selected=stats==task.status)=stats ? 'true' : 'false'
+                    option(value=stats selected=stats==task.status)=stats ? 'Selesai' : 'Belum Selesai'
 
     button(class="btn btn-light" type="submit") Simpan

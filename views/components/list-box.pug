@@ -6,5 +6,5 @@ div(class="card bg-transparent mt-2 shadow")
         //- h6(class="ml-3 mb-2 card-subtitle text-muted")= task.status ? "Done" : "Need to be done"
         
         div(id=`desc-${task._id}` class="collapse" aria-labelledby="" data-parent="#todo-list")
-            p.pl-2.text-white=task.description
+            p.pl-2.ml-1.text-white=task.description
             include ../components/action-button.pug
