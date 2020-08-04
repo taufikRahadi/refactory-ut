@@ -1,0 +1,27 @@
+form(action="/task" method="POST" enctype="multipart/form-data")
+    if task
+        input(type="hidden" name="_id" value=task._id)
+    .form-group
+        label Todo Task
+        input(type="text" name="name" value=`${task ? task.name : ''}` class="form-control")
+
+    .form-group
+        label Task Description
+        textarea(class="form-control", cols="30", rows="3" name="description")=task ? task.description : ''
+    
+    .form-group
+        label Photo
+        input(type="file", name="photo" class="form-control")
+
+    if task
+        .form-group
+            label Status
+            select(class="form-control" name="status")
+                each stats in [1, 0]
+                    option(value=stats selected=stats==task.status)=stats ? 'Selesai' : 'Belum Selesai'
+
+    button(class="btn btn-dark float-right" type="submit") Simpan
+
+if task
+    h3.font-weight-bold.mt-5 Current Image
+    img(src="http://localhost:3000/images/upload/" + task.photo, alt="" class="img-fluid")

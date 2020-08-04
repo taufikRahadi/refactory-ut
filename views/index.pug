@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .row.justify-content-center.mt-5.ml-0.mr-0
+    .col-md-8.col-sm-12
+      .card
+        .card-body
+          h3.card-title.font-weight-bold Create Task
+          include components/task-form
+    .col-md-8.col-sm-12.mt-5.mb-5
+      h3.font-weight-bold Task List
+      .accordion#todo-list
+        each task in tasks
+          include components/list-box
