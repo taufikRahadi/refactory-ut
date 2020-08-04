@@ -3,9 +3,8 @@ const router = express.Router()
 const upload = require('../middleware/upload')
 const TaskController = require('../controllers/task-controller')
 
-router.get('/list', TaskController.taskList)
-
-router.post('/', upload.single('photo'), TaskController.createTask)
+router.get('/', TaskController.taskList)
+    .post('/', upload.single('photo'), TaskController.createTask)
 
 router.get('/:id/delete', TaskController.deleteTask)
 

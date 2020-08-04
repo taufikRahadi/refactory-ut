@@ -12,5 +12,17 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ 
+  storage: storage, 
+  limits: {
+    fileSize: 2000 * 1024,
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') cb(null, true)
+    else {
+      cb(null, false)
+      return cb(new Error('Format gambar tidak sesuai'))
+    }
+  }
+});
 module.exports = upload;

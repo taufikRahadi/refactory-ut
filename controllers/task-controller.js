@@ -1,9 +1,11 @@
+require('dotenv').config()
 const Task = require('../models/task')
+const appUrl = process.env.APP_URL
 
 class TaskController {
     static async taskList (req, res) {
         const tasks = await Task.find()
-        res.render('index.pug', { tasks })
+        res.render('index.pug', { tasks, appUrl: appUrl })
     }
 
     static async createTask (req, res) {
@@ -20,7 +22,7 @@ class TaskController {
             } catch(err) {
                 throw new Error(err)
             } finally {
-                res.redirect('/task/list')
+                res.redirect('/task/')
             }
         } else {
             try {
@@ -28,14 +30,14 @@ class TaskController {
             } catch(err) {
                 throw new Error(err)
             } finally {
-                res.redirect('/task/list')
+                res.redirect('/task/')
             }
         }
     }
 
     static async editTask (req, res) {
         const task = await Task.findById({ _id: req.params.id })
-        res.render('edit.pug', { task })
+        res.render('edit.pug', { task, appUrl: appUrl })
     }
 
     static async deleteTask (req, res) {
@@ -44,7 +46,7 @@ class TaskController {
         } catch (err) {
             throw new Error (err)
         } finally {
-            res.redirect('/task/list')
+            res.redirect('/task/')
         }
     }
 

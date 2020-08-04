@@ -10,7 +10,7 @@
                 .col-6
                     p.pl-2.ml-1=task.description
                 .col-6
-                    img(src=`http://localhost:3000/images/upload/${task.photo}`, height="200" alt="")
+                    img(src=`${appUrl}/images/upload/${task.photo}`, height="200" alt="")
             .float-right.mb-1
                 a(href=`${task.id}/delete` onclick="return confirm('Yakin mau dihapus?')" type="button" class="btn mr-2 btn-light font-weight-bold") Delete
                 a(href=`${task.id}/edit` type="button" class="btn btn-light font-weight-bold") Edit

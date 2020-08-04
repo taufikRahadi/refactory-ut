@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 const connection = {}
@@ -7,7 +8,7 @@ async function connectDb () {
         return
     }
 
-    const db = await mongoose.connect('mongodb://localhost:27017/todo', {
+    const db = await mongoose.connect(process.env.MONGODB_URI, {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
