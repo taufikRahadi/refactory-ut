@@ -1,7 +1,5 @@
 const { Author, Post, Comment } = require('../models')
-const Controller = require('./controllers')
 const response = require('../utils/response-template')
-const bcrypt = require('bcrypt')
 
 class AuthorController {    
     static async index(req, res) {
@@ -20,15 +18,14 @@ class AuthorController {
     }
 
     static async store(req, res) {
-        const { username, email, password } = req.body
+        const { username, email, password, photo } = req.body
         res.setHeader('Content-Type', 'application/json')
         try {
-            const hashPassword = await bcrypt.hash(password, 12)
             const author = await Author.create({
                 username: username,
                 email: email,
-                password: hashPassword,
-                photo: 'anjay'
+                password: password,
+                photo: photo
             })
             res.status(201).json(response('success', 'Author Created', author))
         } catch (err) {
@@ -38,11 +35,13 @@ class AuthorController {
 
     static async update(req, res) {
         const id = req.params.id
-        const { username, email, password } = req.body
+        const { username, email, password, photo } = req.body
         try {
             const author = await Author.update({
                 username: username,
-                email: email
+                email: email,
+                password: password,
+                photo: photo
             }, {
                 where: {
                     id: id
