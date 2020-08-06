@@ -1,0 +1,15 @@
+const express = require('express')
+const app = express()
+const authorRoutes = require('./routes/author')
+const postRoutes = require('./routes/post')
+const commentRoutes = require('./routes/comment')
+const path = require('path')
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use('/author', authorRoutes)
+app.use('/post', postRoutes)
+app.use('/comment', commentRoutes)
+
+app.listen(3000, () => console.log('Listened on port 3000'))

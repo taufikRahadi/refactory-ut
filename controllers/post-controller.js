@@ -1,0 +1,83 @@
+const { Post, Author, Comment } = require('../models')
+const response = require('../utils/response-template')
+
+class PostController {
+    static async index (req, res) {
+        try {
+            const posts = await Post.findAll({
+                include: [
+                    { model: Author },
+                    { model: Comment }
+                ]
+            })
+    
+            return res.status(200).json(response('success', 'Post Fetched', posts))
+        } catch (err) {
+            res.status(500).json(response('fail', err))
+        }
+    }
+
+    static async store (req, res) {
+        const { title, content, tags, status, authorId } = req.body
+        try {
+            const post = await Post.create({
+                title: title,
+                content: content,
+                tags: tags,
+                status: status,
+                authorId: authorId
+            })
+            res.status(201).json(response('success', 'Post Created', post))
+        } catch (err) {
+            res.status(500).json(response('fail', err))
+        }
+    }
+
+    static async update (req, res) {
+        const { title, content, tags, status, authorId } = req.body
+        try {
+            const post = await Post.update({
+                title: title,
+                content: content,
+                tags: tags,
+                status: status,
+                authorId: authorId
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            res.status(200).json(response('success', 'Post Updated', post))
+        } catch (err) {
+            res.status(500).json(response('fail', err))
+        }
+    }
+
+    static async show (req, res) {
+        const post = await Post.findAll({
+            where: {
+                id: req.params.id
+            },
+            include: [
+                { model: Author }
+            ]
+        })
+        if (post) res.status(200).json(response('success', 'Post By Id', post))
+        else res.status(404).json(response('fail', 'post not found'))
+    }
+
+    static async delete (req, res) {
+        try {
+            await Post.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            res.status(204)
+        } catch (err) {
+            res.status(500).json(response('ERR', err))
+        }
+    }
+}
+
+module.exports = PostController
