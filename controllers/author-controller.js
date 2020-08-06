@@ -1,17 +1,22 @@
 const { Author, Post, Comment } = require('../models')
+const Controller = require('./controllers')
 const response = require('../utils/response-template')
 const bcrypt = require('bcrypt')
 
-class AuthorController {
+class AuthorController {    
     static async index(req, res) {
-        const authors = await Author.findAll({
-            include: [
-                { model: Post },
-                { model: Comment }
-            ]
-        })
-        res.setHeader('Content-Type', 'application/json')
-        return res.json(response('success', 'Authors fetched', authors))
+        try {
+            const authors = await Author.findAll({
+                include: [
+                    { model: Post },
+                    { model: Comment }
+                ]
+            })
+            res.json(response('success', 'Authors fetched', authors))
+        } catch (err) {
+            res.status(500).json(response('fail', fail))
+        }
+
     }
 
     static async store(req, res) {
