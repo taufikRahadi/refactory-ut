@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Author.hasMany(models.Post, { foreignKey: 'authorId' })
-      Author.hasMany(models.Comment, { foreignKey: 'authorId' })
+      Author.hasMany(models.Post, { as: 'posts', foreignKey: 'authorId' })
+      Author.hasMany(models.Comment, { as: 'comments', foreignKey: 'authorId' })
     }
   };
   Author.init({
@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Author',
+    defaultScope: {
+      attributes: { exclude: ['password'] }
+    }
   });
   return Author;
 };
