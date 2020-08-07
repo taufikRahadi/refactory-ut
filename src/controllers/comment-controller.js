@@ -35,28 +35,31 @@ class CommentController {
 
     static async update (req, res) {
         const { content, status, authorId, email, url, postId } = req.body
-        try {
-            const comment = await Comment.update({
-                content: content,
-                status: status,
-                authorId: authorId,
-                email: email,
-                url: url,
-                postId: postId
-            }, {
-                where: {
-                    id: req.params.id
-                }
-            })
-
-            res.status(200).json(response('success', 'Comment Updated', comment))
-        } catch (err) {
-            res.status(500).json(resposne('fail', err))
-        }
+        const findComment = Comment.findByPk(req.params.id)
+        if (findComment) {
+            try {
+                const comment = await Comment.update({
+                    content: content,
+                    status: status,
+                    authorId: authorId,
+                    email: email,
+                    url: url,
+                    postId: postId
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+    
+                res.status(200).json(response('success', 'Comment Updated', comment))
+            } catch (err) {
+                res.status(500).json(resposne('fail', err))
+            }
+        } else res.status(404).json(response('fail', 'comment not found'))
     }
 
     static async  show (req, res) {
-        const comment = await Comment.findAll({
+        const comment = await Comment.findOne({
             where: {
                 id: req.params.id
             }, include: [
@@ -69,16 +72,19 @@ class CommentController {
     }
 
     static async delete (req, res) {
-        try {
-            await Comment.destroy({ 
-                where: {
-                    id: req.params.id
-                }
-            })
-            res.status(200).json(response('success', 'Comment Deleted'))
-        } catch (err) {
-            res.status(500).json(response('fail', err))
-        }
+        const findComment = await Comment.findByPk(req.params.id)
+        if (findComment) {
+            try {
+                await Comment.destroy({ 
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                res.status(200).json(response('success', 'Comment Deleted'))
+            } catch (err) {
+                res.status(500).json(response('fail', err))
+            }
+        } else res.status(404).json(response('fail', 'comment not found'))
     }
 }
 
