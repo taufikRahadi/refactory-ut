@@ -6,8 +6,8 @@ class PostController {
         try {
             const posts = await Post.findAll({
                 include: [
-                    { model: Author },
-                    { model: Comment }
+                    { model: Author, as: 'author' },
+                    { model: Comment, as: 'comments' }
                 ]
             })
     
@@ -54,7 +54,7 @@ class PostController {
     }
 
     static async show (req, res) {
-        const post = await Post.findAll({
+        const post = await Post.findOne({
             where: {
                 id: req.params.id
             },
@@ -67,16 +67,19 @@ class PostController {
     }
 
     static async delete (req, res) {
-        try {
-            await Post.destroy({
-                where: {
-                    id: req.params.id
-                }
-            })
-            res.status(204)
-        } catch (err) {
-            res.status(500).json(response('ERR', err))
-        }
+        const findPost = await Post.findByPk(req.params.id)
+        if (findPost) {
+            try {
+                await Post.destroy({
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                res.status(204)
+            } catch (err) {
+                res.status(500).json(response('fail', err))
+            }
+        } else res.status(404).json(response('fail', 'post not found'))
     }
 }
 
