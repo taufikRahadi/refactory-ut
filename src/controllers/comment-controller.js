@@ -6,8 +6,8 @@ class CommentController {
         try {
             const comments = await Comment.findAll({
                 include: [
-                    { model: Author },
-                    { model: Post }
+                    { model: Author, as: 'author' },
+                    { model: Post, as: 'post' }
                 ]
             })
             res.status(200).json(response('success', 'Comments fetched', comments))
