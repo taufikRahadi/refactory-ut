@@ -6,13 +6,13 @@ class AuthorController {
         try {
             const authors = await Author.findAll({
                 include: [
-                    { model: Post },
-                    { model: Comment }
+                    { model: Post, as: 'posts' },
+                    { model: Comment, as: 'comments' }
                 ]
             })
             res.json(response('success', 'Authors fetched', authors))
         } catch (err) {
-            res.status(500).json(response('fail', fail))
+            res.status(500).json(response('fail', err))
         }
 
     }
@@ -54,16 +54,16 @@ class AuthorController {
     }
 
     static async show(req, res) {
-        const author = await Author.findAll({
-            where: {
-                id: req.params.id
-            },
-            include: [
-                { model: Post },
-                { model: Comment }
-            ]
-        })
         try {
+            const author = await Author.findOne({
+                where: {
+                    id: req.params.id
+                },
+                include: [
+                    { model: Post, as: 'posts' },
+                    { model: Comment, as: 'comments' }
+                ]
+            })
             res.status(200).json(response('success', 'Author By ID', author))
         } catch (err) {
             res.status(500).json(response('fail', err))
@@ -72,15 +72,18 @@ class AuthorController {
     
     static async delete(req, res) {
         const id = req.params.id
-        try {
-            await Author.destroy({
-                where: {
-                    id: id
-                }
-            })
-            res.status(200).json(response('success', 'Author Deleted'))
-        } catch (err) {
-            res.status(500).json(response('fail', err))
+        const findAuthor = await Author.find({ where: { id: req.params.id } })
+        if(findAuthor) {
+            try {
+                await Author.destroy({
+                    where: {
+                        id: id
+                    }
+                })
+                res.status(200).json(response('success', 'Author Deleted'))
+            } catch (err) {
+                res.status(500).json(response('fail', err))
+            }
         }
     }
 }
