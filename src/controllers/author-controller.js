@@ -4,7 +4,7 @@ const response = require('../utils/response-template')
 class AuthorController {    
     static async index(req, res) {
         try {
-            const authors = await Author.findAll({
+            const authors = await Author.scope('withoutPassword').findAll({
                 include: [
                     { model: Post, as: 'posts' },
                     { model: Comment, as: 'comments' }
@@ -14,7 +14,6 @@ class AuthorController {
         } catch (err) {
             res.status(500).json(response('fail', err))
         }
-
     }
 
     static async store(req, res) {
@@ -55,7 +54,7 @@ class AuthorController {
 
     static async show(req, res) {
         try {
-            const author = await Author.findOne({
+            const author = await Author.scope('withoutPassword').findOne({
                 where: {
                     id: req.params.id
                 },
