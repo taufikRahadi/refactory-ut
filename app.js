@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
-const authorRoutes = require('./routes/author')
-const postRoutes = require('./routes/post')
-const commentRoutes = require('./routes/comment')
+const authorRoutes = require('./src/routes/author')
+const postRoutes = require('./src/routes/post')
+const commentRoutes = require('./src/routes/comment')
 const path = require('path')
 
 app.use(express.static(path.join(__dirname, 'public')))
