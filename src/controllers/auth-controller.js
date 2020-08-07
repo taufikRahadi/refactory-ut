@@ -7,15 +7,9 @@ const secret = process.env.JWT_SECRET
 
 class AuthController {
     static async signup (req, res) {
-        const { username, email, password, photo } = req.body
+        req.body.password = await bcrypt.hash(req.body.password, 12)
         try {
-            const hash = await bcrypt.hash(password, 12)
-            const author = await Author.create({
-                username: username,
-                email: email,
-                password: hash,
-                photo: photo
-            })
+            const author = await Author.create({...req.body})
             res.status(201).json(response('success', 'signup success', author))
         } catch (err) {
             res.status(500).json(response('fail', err))
