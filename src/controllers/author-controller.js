@@ -4,7 +4,7 @@ const response = require('../utils/response-template')
 class AuthorController {    
     static async index(req, res) {
         try {
-            const authors = await Author.scope('withoutPassword').findAll({
+            const authors = await Author.findAll({
                 include: [
                     { model: Post, as: 'posts' },
                     { model: Comment, as: 'comments' }
