@@ -19,7 +19,7 @@ class AuthController {
     static async login (req, res) {
         const { username, password } = req.body
         try {
-            const user = await Author.findOne({
+            const user = await Author.scope('withPassword').findOne({
                 where: {
                     username: username
                 },
@@ -43,7 +43,7 @@ class AuthController {
         const token = req.token
         const userId = jwt.decode(token, secret).authorId
         try {
-            const user = await Author.scope('withoutPassword').findOne({
+            const user = await Author.findOne({
                 where: {
                     id: userId
                 }
