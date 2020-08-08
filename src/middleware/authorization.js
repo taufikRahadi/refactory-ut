@@ -7,12 +7,14 @@ module.exports = (req, res, next) => {
     if(req.headers['authorization'])  {
         const token = req.headers['authorization'].split(' ')[1]
         if(!token) return res.status(401).json(response('fail', 'unauthenticated'))
-    
-        const verify = jwt.verify(token, jwtSecret)
-        if (verify) {
-            req.token = token
-            return next()
-        } else {
+        
+        try {
+            const verify = jwt.verify(token, jwtSecret)
+            if (verify) {
+                req.token = token
+                return next()
+            }
+        } catch (error) {
             return res.status(500).json(response('fail', 'failed to authenticate'))
         }
     } else {
