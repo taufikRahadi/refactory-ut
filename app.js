@@ -15,4 +15,8 @@ app.use('/post', authorization, postRoutes)
 app.use('/comment', authorization, commentRoutes)
 app.use('/auth', authRoutes)
 
+app.get('*', (req, res) => {
+    res.status(404).json({ status: 'fail', message: 'notfound' })
+})
+
 app.listen(3000, () => console.log('Listened on port 3000'))
