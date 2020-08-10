@@ -1,5 +1,7 @@
 const { Post, Author, Comment } = require('../models')
 const response = require('../utils/response-template')
+const cloudinary = require('../middleware/cloudinary')
+const fs = require('fs')
 
 class PostController {
     static async index (req, res) {
@@ -11,7 +13,7 @@ class PostController {
                 ]
             })
     
-            return res.status(200).json(response('success', 'Post Fetched', posts))
+            res.status(200).json(response('success', 'Post Fetched', posts))
         } catch (err) {
             res.status(500).json(response('fail', err))
         }
@@ -19,15 +21,19 @@ class PostController {
 
     static async store (req, res) {
         const { title, content, tags, status, authorId } = req.body
+        const image = req.file.path
         try {
+            const upload = await cloudinary(image)
             const post = await Post.create({
                 title: title,
                 content: content,
                 tags: tags,
                 status: status,
+                photo: upload.secure_url,
                 authorId: authorId
             })
             res.status(201).json(response('success', 'Post Created', post))
+            fs.unlinkSync(image)
         } catch (err) {
             res.status(500).json(response('fail', err))
         }
