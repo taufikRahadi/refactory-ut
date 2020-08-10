@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const PostController = require('../controllers/post-controller')
-const authorization = require('../middleware/authorization')
+const upload = require('../middleware/upload')
 
 router.get('/', PostController.index)
-router.post('/', PostController.store)
+router.post('/', upload.single('photo'), PostController.store)
 router.put('/:id', PostController.update)
 router.delete('/:id', PostController.delete)
 router.get('/:id', PostController.show)
