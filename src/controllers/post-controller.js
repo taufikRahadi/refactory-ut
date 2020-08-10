@@ -1,6 +1,6 @@
 const { Post, Author, Comment } = require('../models')
 const response = require('../utils/response-template')
-const cloudinary = require('../middleware/cloudinary')
+const cloudinary = require('../helpers/cloudinary')
 const fs = require('fs')
 
 class PostController {
