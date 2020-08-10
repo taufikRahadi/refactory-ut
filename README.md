@@ -1,8 +1,11 @@
-## rest api express and sequelize
+# Rest API Express and Sequelize
 
+### Installation
+
+buat db dulu namanya mvc, atau nama lain juga bisa tapi di ubah dulu env nya
 ```
-yarn install
-yarn sequelize-cli db:migrate
+node init.js
+yarn start
 ```
 <hr />
 
