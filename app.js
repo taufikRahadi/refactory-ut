@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
 const authorRoutes = require('./src/routes/author')
 const postRoutes = require('./src/routes/post')
 const commentRoutes = require('./src/routes/comment')
