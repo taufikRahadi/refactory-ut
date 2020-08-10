@@ -41,18 +41,26 @@ class PostController {
 
     static async update (req, res) {
         const { title, content, tags, status, authorId } = req.body
+        const post = await Post.findOne({ where: { id: req.params.id } })
+        if(!post) res.status(404).json(response('fail', 'post not found'))
+        
+        if (req.file) {
+            const image = req.file.path
+            try {
+                const upload = await cloudinary(image)
+                post.photo = upload.secure_url
+            } catch (err) {
+                res.status(500).json(response('fail', err))
+            }
+        }
+        post.title = title
+        post.content = content
+        post.tags = tags
+        post.status = status
+        post.authorId = authorId
         try {
-            const post = await Post.update({
-                title: title,
-                content: content,
-                tags: tags,
-                status: status,
-                authorId: authorId
-            }, {
-                where: {
-                    id: req.params.id
-                }
-            })
+            await post.save()
+            if (req.file) fs.unlinkSync(req.file.path)
             res.status(200).json(response('success', 'Post Updated', post))
         } catch (err) {
             res.status(500).json(response('fail', err))
@@ -65,7 +73,8 @@ class PostController {
                 id: req.params.id
             },
             include: [
-                { model: Author }
+                { model: Author, as: 'author' },
+                { model: Comment, as: 'comments' }
             ]
         })
         if (post) res.status(200).json(response('success', 'Post By Id', post))
