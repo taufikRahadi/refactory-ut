@@ -3,6 +3,9 @@ const { Author } = require('../models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const response = require('../utils/response-template')
+const sendMailRegister = require('../services/mail-service')
+const generatePDF = require('../services/generate-pdf')
+const { emailQueue, pdfQueue } = require('../queue/signup')
 const secret = process.env.JWT_SECRET
 
 class AuthController {
@@ -10,9 +13,30 @@ class AuthController {
         req.body.password = await bcrypt.hash(req.body.password, 12)
         try {
             const author = await Author.create({...req.body})
-            res.status(201).json(response('success', 'signup success', author))
+            if(author) {
+                const pdf = generatePDF({
+                    email: author.email,
+                    username: author.username,
+                    fullname: 'ASW',
+                    address: 'ajsdlkjlsd',
+                    phone: '08823929381239'
+                })
+                if(pdf) {
+                    await sendMailRegister({
+                        email: author.email,
+                        username: author.username,
+                        fullname: 'ASW',
+                        address: 'ajsdlkjlsd',
+                        phone: '08823929381239',
+                        pdf: pdf.filename
+                    })
+                }
+                res.status(201).json(response('succes', 'signup success', author))
+            }
+            res.status(500).json(response('fail', err.message))
+            
         } catch (err) {
-            res.status(500).json(response('fail', err))
+            res.status(500).json(response('fail', err.message))
         }
     }
 

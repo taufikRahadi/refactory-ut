@@ -6,6 +6,13 @@ const commentRoutes = require('./src/routes/comment')
 const authRoutes = require('./src/routes/auth')
 const path = require('path')
 const authorization = require('./src/middleware/authorization')
+const { setQueues } = require('bull-board')
+const { UI } = require('bull-board')
+const { emailQueue, pdfQueue } = require('./src/queue/signup')
+
+setQueues([emailQueue, pdfQueue])
+
+app.use('/admin/queues', UI)
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())

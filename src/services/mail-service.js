@@ -24,7 +24,13 @@ async function sendMailRegister(payload) {
         to: payload.email,
         from: process.env.AUTH_EMAIL_USER,
         subject: 'Registration Success',
-        html: htmlTemplate
+        html: htmlTemplate,
+        attachments: [
+          {
+            filename: payload.fullname + '_data.pdf',
+            path: payload.pdf
+          }
+        ]
       }
       transporter.sendMail(mail)
     })
