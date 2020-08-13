@@ -18045,6 +18045,12 @@ body {
   transition: all 1s;
 }
 
+.dot {
+  padding: 10px 20px;
+  background-color: #4A90E2;
+  border-radius: 50%;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
