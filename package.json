@@ -1,0 +1,15 @@
+{
+  "name": "refactory-ut",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:taufikRahadi/refactory-ut.git",
+  "author": "Taufik Rahadi <taufikrahadi1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "tailwindcss": "^1.6.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
