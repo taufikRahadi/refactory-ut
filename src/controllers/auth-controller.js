@@ -11,33 +11,72 @@ const secret = process.env.JWT_SECRET
 class AuthController {
     static async signup (req, res) {
         req.body.password = await bcrypt.hash(req.body.password, 12)
+        // return Author.create({...req.body}).then(author => res.json(author))
         try {
             const author = await Author.create({...req.body})
-            if(author) {
-                const pdf = generatePDF({
-                    email: author.email,
+            pdfQueue.add({
+                username: author.username,
+                email: author.email,
+                fullname: 'ATasidoasid',
+                address: 'aspdpqwop',
+                phone: '082839238239'
+            }, { delay: 1000, attempts: 2 })
+
+            pdfQueue.process(async (job) => {
+                return await generatePDF(job.data)
+            })
+
+            pdfQueue.on('completed', (err, result) => {
+                if(err) return res.json(err.message)
+                console.log(result)
+                emailQueue.add({
                     username: author.username,
-                    fullname: 'ASW',
-                    address: 'ajsdlkjlsd',
-                    phone: '08823929381239'
+                    email: author.email,
+                    fullname: 'ATasidoasid',
+                    address: 'aspdpqwop',
+                    phone: '082839238239',
+                    // pdf: result.filename
+                }, { delay: 1000, attempts: 2 })
+
+                emailQueue.process(async (job) => {
+                    console.log(job.data)
+                    return await sendMailRegister(job)
                 })
-                if(pdf) {
-                    await sendMailRegister({
-                        email: author.email,
-                        username: author.username,
-                        fullname: 'ASW',
-                        address: 'ajsdlkjlsd',
-                        phone: '08823929381239',
-                        pdf: pdf.filename
-                    })
-                }
-                res.status(201).json(response('succes', 'signup success', author))
-            }
-            res.status(500).json(response('fail', err.message))
-            
+                emailQueue.on('completed', (error, result) => {
+                    if(error) return res.json({msg: error.message, stat: 'error'})
+                    res.status(201).json(response('responsr', result, author))
+                })
+            })
         } catch (err) {
-            res.status(500).json(response('fail', err.message))
+            res.status(500).json(err.message)
         }
+        // try {
+        //     const author = await Author.create({...req.body})
+        //     if(author) {
+        //         const pdf = generatePDF({
+        //             email: author.email,
+        //             username: author.username,
+        //             fullname: 'ASW',
+        //             address: 'ajsdlkjlsd',
+        //             phone: '08823929381239'
+        //         })
+        //         if(pdf) {
+        //             await sendMailRegister({
+        //                 email: author.email,
+        //                 username: author.username,
+        //                 fullname: 'ASW',
+        //                 address: 'ajsdlkjlsd',
+        //                 phone: '08823929381239',
+        //                 pdf: pdf.filename
+        //             })
+        //         }
+        //         res.status(201).json(response('succes', 'signup success', author))
+        //     }
+        //     res.status(500).json(response('fail', err.message))
+            
+        // } catch (err) {
+        //     res.status(500).json(response('fail', err.message))
+        // }
     }
 
     static async login (req, res) {
