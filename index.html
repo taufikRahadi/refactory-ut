@@ -12,7 +12,11 @@
         <h1 class="text-center text-6xl font-bold">Vue Simple Todo App</h1>
         <div class="container md:px-20 md:mx-5 md:my-20 px-10 my-10">
             <form @submit.prevent="addTask()">
-                <input type="text" v-model="taskName" placeholder="Add New Task" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+                <input type="text"
+                    v-model="taskName"
+                    placeholder="Add New Task"
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                >
                 <button class="mt-5 shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded">
                     Save
                 </button>
@@ -20,15 +24,29 @@
 
             <div class="flex my-10 flex-col">
                 <div class="rounded overflow-hidden shadow-sm bg-gray-200 border-solid border-2"
-                    v-for="(task, index) in todos" :key="task.name"
+                    v-for="(task, index) in todos" 
+                    :key="task.name"
                 >
-                    <div class="flex flex-row px-6 py-4 items-center" v-show="task.showed">
+                    <div class="flex flex-row px-6 py-4 items-center"
+                        v-show="task.showed"
+                    >
                         <div class="mb-2 pr-10">
-                            <input type="checkbox" name="" id="" class="border-solid border-4 border-gray-500 appearance-none p-3 rounded-full bg-purple-500" v-if="task.status" @click="setTaskDone(index)" checked>
-                            <input type="checkbox" name="" id="" class="border-solid border-4 border-gray-500 appearance-none p-3 rounded-full bg-white" v-else @click="setTaskDone(index)">
+                            <input type="checkbox"
+                                class="border-solid border-4 border-gray-500 appearance-none p-3 rounded-full bg-purple-500"
+                                v-if="task.status" 
+                                @click="setTaskDone(index)" 
+                                checked
+                            >
+                            <input type="checkbox"
+                                class="border-solid border-4 border-gray-500 appearance-none p-3 rounded-full bg-white" 
+                                v-else 
+                                @click="setTaskDone(index)"
+                            >
                         </div>
                         <div class="font-bold text-xl w-full mb-2">{{ task.name | capitalize }}</div>
-                        <button class="bg-red-500 float-right hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" @click="removeTask(index)">
+                        <button class="bg-red-500 float-right hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" 
+                            @click="removeTask(index)"
+                        >
                             Remove
                         </button>
                     </div>

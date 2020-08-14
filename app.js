@@ -2,8 +2,8 @@ new Vue({
     el: '#app',
     filters: {
         capitalize: (val) => {
-            if (!val) return ''
-            return val.toString().charAt(0).toUpperCase() + val.slice(1)
+            const value = val.split(' ')
+            return value.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' ')
         }
     },
 
