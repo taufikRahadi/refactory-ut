@@ -1,3 +1,6 @@
+import Vue from './vue'
+import './styles.css'
+
 new Vue({
     el: '#app',
     filters: {
