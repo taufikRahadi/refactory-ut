@@ -1,3 +1,7 @@
+import Vue from './vue'
+import './styles.css'
+import 'animate.css'
+
 new Vue({
     el: '#app',
     filters: {

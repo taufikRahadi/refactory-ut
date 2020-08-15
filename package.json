@@ -1,0 +1,24 @@
+{
+  "name": "refactory-ut",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:taufikRahadi/refactory-ut.git",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^4.2.1",
+    "postcss": "^7.0.32",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.2.1",
+    "tailwindcss": "^1.6.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.0"
+  },
+  "scripts": {
+    "dev:watch": "webpack-dev-server --mode=development --config webpack.config.js",
+    "dev:build": "webpack --mode=development --config webpack.config.js"
+  }
+}
