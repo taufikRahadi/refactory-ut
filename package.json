@@ -13,5 +13,12 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.0"
+  },
+  "scripts": {
+    "dev:watch": "webpack-dev-server --mode=development --config webpack.config.js",
+    "dev:build": "webpack --mode=development --config webpack.config.js"
   }
 }

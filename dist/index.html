@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Todo App</title>
-
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -15,15 +14,15 @@
                 <input type="text"
                     v-model="taskName"
                     placeholder="Add New Task"
-                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 animate__animated animate__bounceInDown"
                 >
-                <button class="mt-5 shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded">
+                <button class="transition-all duration-500 ease-out mt-5 shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded animate__animated animate__bounceInDown">
                     Save
                 </button>
             </form>
 
             <div class="flex my-10 flex-col">
-                <div class="rounded overflow-hidden shadow-sm bg-gray-200 border-solid border-2"
+                <div class="rounded overflow-hidden shadow-sm bg-gray-200 border-solid border-2 animate__animated animate__bounceInDown"
                     v-for="(task, index) in todos" 
                     :key="task.name"
                 >
@@ -44,18 +43,16 @@
                             >
                         </div>
                         <div class="font-bold text-xl w-full mb-2">{{ task.name | capitalize }}</div>
-                        <button class="bg-red-500 float-right hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" 
+                        <button class="transition-all duration-500 ease-out border-solid border-2 border-red-500 text-red-500 float-right hover:bg-red-600 hover:text-white text-white font-bold py-2 px-4 rounded-full" 
                             @click="removeTask(index)"
                         >
-                            Remove
+                            <i class="fa fa-trash"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="app.bundle.js"></script>
 </body>
 </html>
