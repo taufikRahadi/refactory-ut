@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card animate__animated animate__fadeIn">
             <div class="flex justify-center">
                 <img :src="task.thumbnailUrl" :alt="`${task.title}_image`" />
                 <div class="m-5">
