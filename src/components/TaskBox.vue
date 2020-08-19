@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card animate__animated animate__fadeIn">
+        <div class="card hover:scale-105 transition-all duration-300 transform animate__animated animate__fadeIn">
             <div class="flex justify-center">
                 <img :src="task.thumbnailUrl" :alt="`${task.title}_image`" />
                 <div class="m-5">

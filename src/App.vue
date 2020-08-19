@@ -3,8 +3,8 @@
     <h3 class="font-bold text-center text-6xl text-gray-700">Vue Todo</h3>
     <search-field :message="message" @search-task="searchTask"></search-field>
 
-    <h2 class="font-bold px-20 text-5xl text-gray-700 animate__animated animate__fadeIn animate__delay-1s">Task List</h2>
-    <div class="grid grid-cols-3 gap-4 px-20">
+    <h2 class="font-bold px-5 md:px-20 text-5xl text-gray-700 animate__animated animate__fadeIn animate__delay-1s">Task List</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-5 md:px-20">
       <task-box v-for="task in data" :key="task.id" :task="task"></task-box>
     </div>
   </div>
