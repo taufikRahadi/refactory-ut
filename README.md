@@ -1,3 +1,7 @@
-<h2> Submission Test Refactory Bootcamp - Taufik Rahadi <img src="https://media.giphy.com/media/mGcNjsfWAjY5AEZNw6/giphy.gif" width="50"></h2>
+```
+// if using yarn
+yarn serve
 
-<p>Checkout branch to see different tests</p>
+// if using npm
+npm run serve
+```
