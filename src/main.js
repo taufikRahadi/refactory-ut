@@ -4,6 +4,7 @@ import './assets/styles.css'
 
 Vue.config.productionTip = false
 Vue.component('search-field', () => import('./components/SearchField.vue'))
+Vue.component('task-box', () => import('./components/TaskBox.vue'))
 
 new Vue({
   render: h => h(App),
