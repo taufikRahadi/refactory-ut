@@ -7,11 +7,10 @@
 
 <script>
 export default {
-    // props: ['searchTask'],
-    // props: ['search', 'message'],
+    props: ['message'],
     data: () => ({
         search: '',
-        message: '',
+        // message: '',
     }),
 
     computed: {
@@ -22,7 +21,7 @@ export default {
 
     watch: {
         search: function () {
-            this.message = 'Sedang Mengetik...'
+            // this.message = 'Sedang Mengetik...'
             this.$emit('search-task', this.search)
         },
     }
