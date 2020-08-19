@@ -21,7 +21,7 @@ export default {
 
   methods: {
     searchTask(search) {
-      if (search.length > 3) {
+      if (search.length >= 3) {
         this.data = data.filter(val => val.title.includes(search))
       } else {
         this.data = data
