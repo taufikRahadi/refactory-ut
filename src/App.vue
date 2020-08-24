@@ -11,7 +11,6 @@
           :data="selectedData"
           title="Selected Data"
           v-show="selectedData.length > 0"
-          :showSlot="true"
         />
       </keep-alive>
 

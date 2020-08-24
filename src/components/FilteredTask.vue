@@ -8,7 +8,7 @@
                 :task="task"
                 :click="click"
             >
-                <button class="bg-blue-400 rounded text-white font-semibold px-10 py-3" v-show="showSlot" @click="click(task)">Select</button>
+                <button class="border-2 text-blue-400 m-2 border-blue-400 rounded-full text-white font-semibold w-24" v-show="showSlot" @click="click(task)">Select</button>
             </task-box>
         </div>
     </div>

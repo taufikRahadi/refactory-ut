@@ -7,7 +7,7 @@ body {
 }
 
 .card {
-    @apply rounded-md shadow-md bg-white p-5;
+    @apply rounded-md shadow-md bg-white overflow-hidden;
 }
 
 .sub-title {
