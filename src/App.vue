@@ -5,13 +5,26 @@
 
     <h2 class="font-bold px-5 md:px-20 text-5xl text-gray-700 animate__animated animate__fadeIn" v-show="filtered">Task List</h2>
 
-    <div v-show="filtered">
-      <filtered-task 
+    <div>
+      <keep-alive>
+        <filtered-task 
+          :data="selectedData"
+          title="Selected Data"
+          v-show="selectedData.length > 0"
+          :showSlot="true"
+        />
+      </keep-alive>
+
+      <filtered-task
+        v-show="filtered"
         :data="data"
         title="Filtered Data"
+        :click="clickBox"
+        :showSlot="true"
       />
 
       <filtered-task
+        v-show="filtered"
         :data="unfilteredData"
         title="Unfiltered Data"
       />
@@ -28,10 +41,17 @@ export default {
     data: [],
     message: '',
     unfilteredData: [],
+    selectedData: [],
     filtered: false
   }),
 
   methods: {
+    clickBox(item) {
+      this.selectedData.push(item)
+      this.data.splice(this.data.indexOf(item), 1)
+    },
+
+
     searchTask(search) {
       if (search.length >= 3) {
         this.message = 'Searching Task. . .'
