@@ -9,3 +9,11 @@ body {
 .card {
     @apply rounded-md shadow-md bg-white p-5;
 }
+
+.sub-title {
+    @apply text-lg text-gray-700 px-5;
+}
+
+.grid-3x3 {
+    @apply grid grid-cols-1 gap-4 mt-5 mb-5 px-5;
+}

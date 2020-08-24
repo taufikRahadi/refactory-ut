@@ -6,6 +6,7 @@ import 'animate.css'
 Vue.config.productionTip = false
 Vue.component('search-field', () => import('./components/SearchField.vue'))
 Vue.component('task-box', () => import('./components/TaskBox.vue'))
+Vue.component('filtered-task', () => import('./components/FilteredTask.vue'))
 
 new Vue({
   render: h => h(App),
