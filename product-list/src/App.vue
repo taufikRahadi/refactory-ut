@@ -9,11 +9,13 @@
     <div class="mt-10 flex justify-center">
       <alert class="opacity-75 hover:opacity-100" :text="alertText" v-show="isShowAlert" />
     </div>
-
-    <product-list
-      :products="products"
-      :addToCart="addProductToCart"
-    />
+    <transition name="fade" enter-active-class="animate__fadeIn" leave-active-class="animate__fadeOut">
+      <product-list
+        :products="products"
+        :addToCart="addProductToCart"
+        class="animate__animated"
+      />
+    </transition>
   </div>
 </template>
 
