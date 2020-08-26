@@ -39,7 +39,6 @@ export default {
     mounted() {
         this.$Progress.start()
         const total = parseInt(this.data.length / 10)
-        // console.log(total)
         this.totalPages = total % 1 == 0 ? total : total + 1
         this.$Progress.finish()
     }

@@ -11,19 +11,58 @@ const routes = [
     component: Home
   },
   {
-    path: '/posts/:page',
+    path: '/posts',
     name: 'Post',
-    component: () => import('../views/Posts.vue')
+    redirect: { name: 'ListPost' },
+    component: () => import('../views/Posts.vue'),
+    children: [
+      {
+        name: 'ListPost',
+        path: ':page',
+        component: () => import('../views/posts/List.vue')
+      },
+      {
+        name: 'DetailPost',
+        path: ':id/detail',
+        component: () => import('../views/posts/Detail.vue')
+      }
+    ]
   },
   {
-    path: '/photos/:page',
+    path: '/photos',
     name: 'Photo',
-    component: () => import('../views/Photos.vue')
+    redirect: { name: 'ListPhoto' },
+    component: () => import('../views/Photos.vue'),
+    children: [
+      {
+        name: 'ListPhoto',
+        path: ':page',
+        component: () => import('../views/photos/List.vue')
+      },
+      {
+        name: 'DetailPhoto',
+        path: ':id/detail',
+        component: () => import('../views/photos/Detail.vue')
+      }
+    ]
   },
   {
-    path: '/album/:page',
+    path: '/albums',
     name: 'Albums',
-    component: () => import('../views/Albums.vue')
+    redirect: { name: 'ListAlbum' },
+    component: () => import('../views/Albums.vue'),
+    children: [
+      {
+        name: 'ListAlbum',
+        path: ':page',
+        component: () => import('../views/albums/List.vue')
+      },
+      {
+        name: 'DetailAlbum',
+        path: ':id/detail',
+        component: () => import('../views/albums/Detail.vue')
+      }
+    ]
   }
 ]
 
