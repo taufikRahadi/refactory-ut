@@ -1,12 +1,9 @@
 <template>
-    <div>
-        <div class="py-5 grid grid-cols-3 gap-4">
-            <card v-for="photo in photosWithPagination" :data="photo" :key="photo.id">
-                <img :src="photo.thumbnailUrl" class="w-full h-32 object-cover" slot="image" :alt="photo.title + 'photos'">
-            </card>
-        </div>
-        <pagination :totalPages="totalPages"></pagination>
-    </div>    
+    <list-layout :data="photos">
+        <card v-for="photo in photosWithPagination" :data="photo" :key="photo.id">
+            <img :src="photo.thumbnailUrl" class="w-full h-32 object-cover" slot="image" :alt="photo.title + 'photos'">
+        </card>
+    </list-layout>
 </template>
 
 <script>

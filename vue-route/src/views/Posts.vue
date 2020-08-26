@@ -1,13 +1,12 @@
 <template>
     <div>
-        <div class="py-5 grid grid-cols-3 gap-4">
+        <list-layout :data="posts">
             <card v-for="post in postsWithPagination" :data="post" :key="post.id">
                 <p slot="description" class="text-left font-thin">
                     {{ post.body }}
                 </p>
             </card>
-        </div>
-        <pagination :totalPages="totalPages"></pagination>
+        </list-layout>
     </div>
 </template>
 
