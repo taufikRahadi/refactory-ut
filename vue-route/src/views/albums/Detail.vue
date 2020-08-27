@@ -10,9 +10,5 @@ export default {
             return albums.find(album => album.id == this.$route.params.id)
         }
     },
-
-    created() {
-        console.log(albums.find(album => album.id == this.$route.params.id))
-    }
 }
 </script>

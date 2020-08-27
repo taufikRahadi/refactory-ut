@@ -1,6 +1,6 @@
 <template>
     <div>
-        <list-layout :data="posts">
+        <list-layout :model="Post" :data="posts">
             <template v-slot:card="{dataWithPagination}">
                 <card v-for="post in dataWithPagination" :data="post" :key="post.id">
                     <p slot="description" class="text-left font-thin">

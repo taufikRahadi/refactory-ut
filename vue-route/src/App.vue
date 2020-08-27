@@ -1,6 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="text-gray-700">
     <nav-bar></nav-bar>
+    <vue-progress-bar></vue-progress-bar>
+    <router-view></router-view>
+    <!-- 
     <div class="grid grid-cols-3">
       <div class="col-span-2 px-5 py-5">
         <h3 class="font-bold text-2xl text-gray-700 text-left">
@@ -12,29 +15,6 @@
       <div class="col-span-1">
         <side-bar></side-bar>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>

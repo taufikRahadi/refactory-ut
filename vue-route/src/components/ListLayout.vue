@@ -1,14 +1,27 @@
 <template>
     <div>
-        <div class="animate__animated animate__fadeIn py-5 grid grid-cols-1 gap-4">
-            <slot name="card" :dataWithPagination="dataWithPagination">
-                <card v-for="data in dataWithPagination" :key="data.id" :data="data">
-                    <router-link slot="description" :to="{ name: `Detail${model}`, params: { id: data.id } }">Detail</router-link>
-                </card>
-            </slot>
+        <div class="grid grid-cols-3">
+            <div class="col-span-2 px-5 py-5">
+                <h3 class="font-bold text-2xl text-gray-700 text-left">
+                    {{ $route.name }}
+                </h3>
+                <div class="animate__animated animate__fadeIn py-5 grid grid-cols-1 gap-4">
+                    <slot name="card" :dataWithPagination="dataWithPagination">
+                        <card v-for="data in dataWithPagination" :key="data.id" :data="data">
+                            <router-link class="text-teal-400" slot="description" :to="{ name: `Detail${model}`, params: { id: data.id } }">Read More</router-link>
+                        </card>
+                    </slot>
+                </div>
+                <pagination :totalPages="totalPages" />
+            </div>
+            <div class="col-span-1">
+                <side-bar :model="model" :data="featuredData">
+                    <template v-slot:sidebar-item>
+                        <slot name="widget" :featuredData="featuredData"></slot>
+                    </template>
+                </side-bar>
+            </div>
         </div>
-
-        <pagination :totalPages="totalPages" />
     </div>
 </template>
 
@@ -36,6 +49,12 @@ export default {
     computed: {
         dataWithPagination() {
             return this.paginate(this.data)
+        },
+
+        featuredData() {
+            const latest = this.data[this.data.length - 1]
+            const first = this.data[0]
+            return [latest, first]
         }
     },
 
