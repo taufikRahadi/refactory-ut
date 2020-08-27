@@ -1,5 +1,5 @@
 <template>
-    <list-layout :data="photos" model="Photo">
+    <list-layout :data="photosWithRelation" model="Photo">
         <template v-slot:card="{dataWithPagination}">
             <card v-for="photo in dataWithPagination" :data="photo" :key="photo.id">
                 <img :src="photo.thumbnailUrl" class="w-full h-32 object-cover" slot="image" :alt="photo.title + 'photos'">
@@ -43,7 +43,10 @@ export default {
 
     computed: {
         photosWithRelation() {
-            return this.photos.map(photo => photo['album'] = albums.find(album => album.id === photo.albumId))
+            return this.photos.map(photo => {
+                photo['album'] = albums.find(album => album.id === photo.albumId)
+                return photo
+            })
         }
     },
 
