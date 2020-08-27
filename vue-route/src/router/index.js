@@ -74,15 +74,15 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if(to.matched.some(route => route.meta.requiresAuth)) {
-    alert('this route is guarded')
-    next({
-      name: 'Home'
-    })
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if(to.matched.some(route => route.meta.requiresAuth)) {
+//     alert('this route is guarded')
+//     next({
+//       name: 'Home'
+//     })
+//   } else {
+//     next()
+//   }
+// })
 
 export { router, routes }
