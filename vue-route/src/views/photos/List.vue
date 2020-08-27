@@ -49,9 +49,5 @@ export default {
             })
         }
     },
-
-    created() {
-        console.log(this.photosWithRelation)
-    }
 }
 </script>
