@@ -14,7 +14,7 @@ const routes = [
     path: '/posts',
     name: 'Post',
     redirect: { name: 'ListPost' },
-    component: () => import('../views/Posts.vue'),
+    component: () => import(/* webpackChunkName: "PostView" */'../views/Posts.vue'),
     meta: {
       requiresAuth: true
     },
@@ -22,12 +22,12 @@ const routes = [
       {
         name: 'ListPost',
         path: ':page',
-        component: () => import('../views/posts/List.vue')
+        component: () => import(/* webpackChunkName: "PostList" */'../views/posts/List.vue')
       },
       {
         name: 'DetailPost',
         path: ':id/detail',
-        component: () => import('../views/posts/Detail.vue')
+        component: () => import(/* webpackChunkName: "PostDetail" */'../views/posts/Detail.vue')
       }
     ],
   },
@@ -35,17 +35,17 @@ const routes = [
     path: '/photos',
     name: 'Photo',
     redirect: { name: 'ListPhoto' },
-    component: () => import('../views/Photos.vue'),
+    component: () => import(/* webpackChunkName: "PhotoView" */'../views/Photos.vue'),
     children: [
       {
         name: 'ListPhoto',
         path: ':page',
-        component: () => import('../views/photos/List.vue')
+        component: () => import(/* webpackChunkName: "PhotoList" */'../views/photos/List.vue')
       },
       {
         name: 'DetailPhoto',
         path: ':id/detail',
-        component: () => import('../views/photos/Detail.vue')
+        component: () => import(/* webpackChunkName: "PhotoDetail" */'../views/photos/Detail.vue')
       }
     ]
   },
@@ -53,17 +53,17 @@ const routes = [
     path: '/albums',
     name: 'Albums',
     redirect: { name: 'ListAlbum' },
-    component: () => import('../views/Albums.vue'),
+    component: () => import(/* webpackChunkName: "AlbumView" */'../views/Albums.vue'),
     children: [
       {
         name: 'ListAlbum',
         path: ':page',
-        component: () => import('../views/albums/List.vue')
+        component: () => import(/* webpackChunkName: "AlbumList" */'../views/albums/List.vue')
       },
       {
         name: 'DetailAlbum',
         path: ':id/detail',
-        component: () => import('../views/albums/Detail.vue')
+        component: () => import(/* webpackChunkName: "AlbumDetail" */'../views/albums/Detail.vue')
       }
     ]
   }
