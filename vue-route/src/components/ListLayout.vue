@@ -1,8 +1,10 @@
 <template>
     <div>
         <div class="animate__animated animate__fadeIn py-5 grid grid-cols-1 gap-4">
-            <slot>
-                <card v-for="data in dataWithPagination" :key="data.id" :data="data" />
+            <slot name="card" :dataWithPagination="dataWithPagination">
+                <card v-for="data in dataWithPagination" :key="data.id" :data="data">
+                    <router-link slot="description" :to="{ name: `Detail${model}`, params: { id: data.id } }">Detail</router-link>
+                </card>
             </slot>
         </div>
 
@@ -13,7 +15,8 @@
 <script>
 export default {
     props: [
-        'data'
+        'data',
+        'model'
     ],
 
     data: () => ({
@@ -38,8 +41,8 @@ export default {
 
     mounted() {
         this.$Progress.start()
-        const total = parseInt(this.data.length / 10)
-        this.totalPages = total % 1 == 0 ? total : total + 1
+        const total = this.data.length / 10
+        this.totalPages = total % 1 == 0 ? total : parseInt(total) + 1
         this.$Progress.finish()
     }
 }

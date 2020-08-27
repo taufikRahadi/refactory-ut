@@ -3,7 +3,7 @@
         <slot name="image"></slot>
         <div class="m-4 text-left">
             <span class="font-black text-gray-700">
-                <p class="border-b-2 pb-2">{{ data.title | capitalize }}</p>
+                <p class="border-b-2 pb-2">{{ data.title }}</p>
             </span>
             <slot name="description"></slot>
         </div>

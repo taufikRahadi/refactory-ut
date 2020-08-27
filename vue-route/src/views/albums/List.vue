@@ -1,5 +1,5 @@
 <template>
-    <list-layout :data="albums" />
+    <list-layout :data="albums" model="Album" />
 </template>
 
 <script>
