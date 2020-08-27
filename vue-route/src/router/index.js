@@ -8,13 +8,16 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/posts',
     name: 'Post',
     redirect: { name: 'ListPost' },
     component: () => import('../views/Posts.vue'),
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         name: 'ListPost',
@@ -26,7 +29,7 @@ const routes = [
         path: ':id/detail',
         component: () => import('../views/posts/Detail.vue')
       }
-    ]
+    ],
   },
   {
     path: '/photos',
@@ -69,6 +72,17 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(route => route.meta.requiresAuth)) {
+    alert('this route is guarded')
+    next({
+      name: 'Home'
+    })
+  } else {
+    next()
+  }
 })
 
 export { router, routes }
