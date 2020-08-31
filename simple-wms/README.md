@@ -1,4 +1,4 @@
-# vuex-ecommerce
+# simple-wms
 
 ## Project setup
 ```
