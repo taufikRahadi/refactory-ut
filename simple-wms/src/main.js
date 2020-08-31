@@ -7,6 +7,7 @@ import './assets/style.css'
 import './plugins/globalComponent'
 import VueProgressBar from 'vue-progressbar'
 import VueTailwindPicker from 'vue-tailwind-picker'
+import VueSweetalert2 from 'vue-sweetalert2';
 
 const options = {
   color: '#38b2ac',
@@ -24,6 +25,7 @@ const options = {
 
 Vue.use(VueProgressBar, options)
 Vue.use(VueTailwindPicker);
+Vue.use(VueSweetalert2)
 
 Vue.config.productionTip = false
 
