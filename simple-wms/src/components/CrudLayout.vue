@@ -5,7 +5,7 @@
                 {{ $route.name }}
             </h1>
 
-            <button @click="showModal = true" class="flex bg-indigo-500 px-5 text-white rounded hover:bg-indigo-700 transition duration-500 font-bold">
+            <button @click="showModal" class="flex bg-indigo-500 px-5 text-white rounded hover:bg-indigo-700 transition duration-500 font-bold">
                 <svg viewBox="0 0 20 20" fill="currentColor" class="plus-circle w-6 h-6"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
                 <span class="ml-3">Add New</span>
             </button>
@@ -28,8 +28,8 @@
                 </table>
             </card>
             <vue-tailwind-modal
-                :showing="showModal"
-                @close="showModal = false"
+                :showing="$store.state.isShowModal"
+                @close="$store.commit('setShowModal', false)"
                 :showClose="true"
                 class="h-auto"
             >
@@ -52,13 +52,16 @@
 <script>
     export default {
         props: ['columns', 'formComponent', 'formRecord'],
-        data: () => ({
-            showModal: false
-        }),
 
         methods: {
             submitForm() {
                 alert('FormSubmitted')
+            },
+
+            showModal () {
+                this.$store.commit('setShowModal', true)
+                this.$store.commit('setIsEditing', false)
+                this.formRecord.reset()
             }
         },
 
