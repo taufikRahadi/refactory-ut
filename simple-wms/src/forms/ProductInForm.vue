@@ -3,6 +3,14 @@
         <div class="form-group">
             <label class="input-label">In Date</label>
              <VueTailwindPicker
+                v-if="$store.state.isEditing"
+                :start-date="formRecord.date"
+                @change="(v) => formRecord.date = v"
+             >
+                 <input class="input-group w-full" type="text" v-model="formRecord.date" />
+             </VueTailwindPicker>
+             <VueTailwindPicker
+                v-else
                 @change="(v) => formRecord.date = v"
              >
                  <input class="input-group w-full" type="text" v-model="formRecord.date" />
