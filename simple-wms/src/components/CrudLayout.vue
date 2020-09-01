@@ -51,7 +51,7 @@
 <script>
     import { mapState, mapActions, mapMutations } from 'vuex'
     export default {
-        props: ['columns', 'formComponent', 'formRecord', 'isLoading', 'modulename'],
+        props: ['columns', 'customSubmitAction', 'formComponent', 'formRecord', 'isLoading', 'modulename'],
 
         computed: {
             ...mapState({
@@ -65,6 +65,7 @@
                 setShowModal: 'setShowModal',
                 setIsEditing: 'setIsEditing',
             }),
+
             async getData() {
                 this.$Progress.start()
                 try {
@@ -76,40 +77,44 @@
             },
             
             async submitForm() {
-                if(!this.isEditing) {
-                    try {
-                        await this.$store.dispatch(`${this.modulename}/createData`, this.formRecord)
-                        this.$swal.fire(
-                            'Success',
-                            'Data Created',
-                            'success'
-                        )
-                        this.setShowModal(false)
-                    } catch (error) {
-                        this.$swal.fire(
-                            'Failed',
-                            'Error creating Data',
-                            'error'
-                        )
-                    }
+                if (this.customSubmitAction != undefined) {
+                    this.customSubmitAction ()   
                 } else {
-                    this.$Progress.start()
-                    try {
-                        await this.$store.dispatch(`${this.modulename}/updateData`, this.formRecord)
-                        this.$swal.fire(
-                            'Success',
-                            'Data Updated',
-                            'success'
-                        )
-                        this.$Progress.finish()
-                        this.setShowModal(false)
-                    } catch (err) {
-                        this.$swal.fire(
-                            'Failed',
-                            'Error updating Data',
-                            'error'
-                        )
-                        this.$Progress.fail()
+                    if(!this.isEditing) {
+                        try {
+                            await this.$store.dispatch(`${this.modulename}/createData`, this.formRecord)
+                            this.$swal.fire(
+                                'Success',
+                                'Data Created',
+                                'success'
+                            )
+                            this.setShowModal(false)
+                        } catch (error) {
+                            this.$swal.fire(
+                                'Failed',
+                                'Error creating Data',
+                                'error'
+                            )
+                        }
+                    } else {
+                        this.$Progress.start()
+                        try {
+                            await this.$store.dispatch(`${this.modulename}/updateData`, this.formRecord)
+                            this.$swal.fire(
+                                'Success',
+                                'Data Updated',
+                                'success'
+                            )
+                            this.$Progress.finish()
+                            this.setShowModal(false)
+                        } catch (err) {
+                            this.$swal.fire(
+                                'Failed',
+                                'Error updating Data',
+                                'error'
+                            )
+                            this.$Progress.fail()
+                        }
                     }
                 }
             },
