@@ -880,14 +880,6 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@coding-wisely/vue-tailwind-datepicker@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@coding-wisely/vue-tailwind-datepicker/-/vue-tailwind-datepicker-1.1.5.tgz#71c3fe3197da2461a75b8e3a4095f4a69072e307"
-  integrity sha512-J/ohoUgRAkFGRyTscsRYqLViQsG34ALgNBnrNcMhSjU8QR1DeHt1qspEZ29bblXPZD7JGuX+sZMOwyCgL67C1A==
-  dependencies:
-    moment "^2.24.0"
-    tailwindcss "^1.2.0"
-
 "@fullhuman/postcss-purgecss@^2.1.2":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@fullhuman/postcss-purgecss/-/postcss-purgecss-2.3.0.tgz#50a954757ec78696615d3e118e3fee2d9291882e"
@@ -2022,11 +2014,6 @@ body-parser@1.19.0:
     qs "6.7.0"
     raw-body "2.4.0"
     type-is "~1.6.17"
-
-body-scroll-lock@^3.0.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/body-scroll-lock/-/body-scroll-lock-3.1.3.tgz#cf78cc04d82328bb54276e104bda66dc93cb3695"
-  integrity sha512-KMV9MT96y2PFUL2C98e2nx/Gs2mhCAzYP6Gsu/9r7Rhn27qxu1yTnQBqHogUuvwVSbstEHNXTaToPNsL7oBZ9g==
 
 bonjour@^3.5.0:
   version "3.5.0"
@@ -5629,11 +5616,6 @@ mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.5, mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@^2.24.0:
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
-  integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
-
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/move-concurrently/download/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -7901,7 +7883,7 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
-tailwindcss@^1.0.4, tailwindcss@^1.2.0, tailwindcss@^1.7.6:
+tailwindcss@^1.0.4, tailwindcss@^1.7.6:
   version "1.7.6"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.7.6.tgz#77f294428e399fb570f4bebde2e9bef98456de8a"
   integrity sha512-focAhU3ciM1/UYBHQVKKzede4zC3y9+IHzU2N/ZF6mbZbhY8S96lOxrO2Y6LMU08+Dbh2xBLmO1bsioLk3Egig==
@@ -8388,11 +8370,6 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vform@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vform/-/vform-1.0.1.tgz#aedce47696c589e0c1eab9bd76a00189d6164683"
-  integrity sha512-O+6zpxxhn3/iYWBaWWwx0sjeRP6Mh5MDNHCjPALtXFT/Mef6nPHquXEAUtai96FwogkGlTQCzFADqwbOsj8E7A==
-
 vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
@@ -8475,15 +8452,6 @@ vue-tailwind-picker@^1.1.4:
   resolved "https://registry.yarnpkg.com/vue-tailwind-picker/-/vue-tailwind-picker-1.1.4.tgz#a9028072298d39d9b547361b8e79f1ae111ad9a9"
   integrity sha512-GSta7ZCxI0KJcKgb8YzZ1n1b8CKIRTAbeqfd2IFCV80KhwL4ehNTVlKOQ1qMd6lMgw54FfnHozp95Eme/C7scA==
 
-vue-tailwind@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/vue-tailwind/-/vue-tailwind-1.2.0.tgz#095d833afd5873ff4dc70915b5a689f90f3b9184"
-  integrity sha512-CVh9fKjVG1rSYOnORV24k5iwFhQg9PNr2Ic3RYyrdwN8w4zQuTbM2ehFu9wQ1zalYTb9z6ze53wdTDcp8JRomA==
-  dependencies:
-    body-scroll-lock "^3.0.3"
-    lodash "^4.17.20"
-    vue "^2.6.11"
-
 vue-template-compiler@^2.6.11:
   version "2.6.12"
   resolved "https://registry.npm.taobao.org/vue-template-compiler/download/vue-template-compiler-2.6.12.tgz?cache=0&sync_timestamp=1597930126764&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-template-compiler%2Fdownload%2Fvue-template-compiler-2.6.12.tgz#947ed7196744c8a5285ebe1233fe960437fcc57e"
@@ -8506,11 +8474,6 @@ vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha1-9evU+mvShpQD4pqJau1JBEVskSM=
-
-vuejs-paginate@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vuejs-paginate/-/vuejs-paginate-2.1.0.tgz#93e1ad1539b713a688c7a2d3080bda60fcc6c77d"
-  integrity sha512-gnwyXlmCiDOu9MLWxN5UJ4PGijKGNOMpHG8ujsrynCzTJljn/rp7Jq0WiDGDAMi5/u0AHuYIHhced+tUW4jblA==
 
 vuex@^3.4.0:
   version "3.5.1"
