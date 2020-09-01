@@ -11,6 +11,7 @@
             </button>
         </div>
         <div class="mt-5">
+            <slot></slot>
             <card>
                 <div class=" p-5">
                     <table class="table-auto w-full">
@@ -27,6 +28,13 @@
                             <slot name="table-row"></slot>
                         </tbody>
                     </table>
+                    <!-- <paginate 
+                        :page-count="20"
+                        :click-handler="nextPage"
+                        prev-text="Prev"
+                        next-text="Next"
+                        container-class="pagination"
+                    /> -->
                 </div>
             </card>
             <vue-tailwind-modal
@@ -65,6 +73,10 @@
                 setShowModal: 'setShowModal',
                 setIsEditing: 'setIsEditing',
             }),
+
+            nextPage() {
+                alert('anjing')
+            },
 
             async getData() {
                 this.$Progress.start()

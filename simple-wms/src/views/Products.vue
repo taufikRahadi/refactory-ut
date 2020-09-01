@@ -4,12 +4,17 @@
             :columns="columns"
             :formComponent="productForm"
             :formRecord="form"
-            :isLoading="isLoading"
             modulename="product"
             @reset-data="resetData"
             :customSubmitAction="submitAction"
-
         >
+            <template v-slot v-if="detailModal">
+                <DetailProduct
+                    :detailModal="detailModal"
+                    :product="product"
+                    @hide-modal="hideDetail"
+                />
+            </template>
             <template v-slot:table-row>
                 <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(product, index) in $store.state.product.products.data" :key="product.id">
                     <td class="px-4 py-3">
@@ -33,7 +38,11 @@
                             :formRecord="form"
                             modulename="product"
                             @fill-data="fillData"
-                        />
+                        >
+                            <button @click="detailData(product.id)" class="bg-teal-400 text-white px-5 py-2 capitalize rounded">
+                                <svg viewBox="0 0 20 20" fill="currentColor" class="eye w-6 h-6"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                            </button>
+                        </action-button>
                     </td>
                 </tr>
             </template>
@@ -42,9 +51,13 @@
 </template>
 
 <script>
+import http from '../helpers/http'
+import DetailProduct from '../components/Product/DetailProduct'
 export default {
+    components: {
+        DetailProduct,
+    },
     data: () => ({
-        isLoading: true,
         productForm: () => import('../forms/ProductForm'),
         form: {
             id: '',
@@ -55,7 +68,9 @@ export default {
         },
         columns: [
             'name', 'stock', 'price', 'supplier name'
-        ]
+        ],
+        detailModal: false,
+        product: null       
     }),
 
     methods: {
@@ -108,6 +123,26 @@ export default {
                     )
                 }
             }
+        },
+        async detailData (id) {
+            this.$Progress.start()
+            try {
+                const { data } = await http.get('product/' + id)
+                this.product = data.data
+                this.$Progress.finish()
+                this.detailModal = true
+            } catch ({ response }) {
+                const err = response.data.message
+                this.$swal.fire(
+                    'Error',
+                    err,
+                    'error'
+                )
+                this.$Progress.fail()
+            }
+        },
+        hideDetail () {
+            this.detailModal = false
         },
         fillData (data) {
             this.form = { ...data, photo: data.photo_url }
