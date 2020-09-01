@@ -8,7 +8,7 @@
 						Products
 					</h3>
 					<h3 class="font-light text-md">
-						{{ $store.state.product.products.data.length }}
+						{{ $store.state.product.products.totalItems }}
 					</h3>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 						User
 					</h3>
 					<h3 class="font-light text-md">
-						{{ $store.state.user.users.data.length }}
+						{{ $store.state.user.users.totalItems }}
 					</h3>
 				</div>
 			</div>
@@ -41,8 +41,8 @@
 		async beforeMount() {
 			this.$Progress.start()
 			try {
-				await this.fetchProducts('?limit=100?page=1')
-				await this.fetchUser('?limit=100?page=1')
+				await this.fetchProducts()
+				await this.fetchUser()
 				this.$Progress.finish()
 			} catch (err) {
 				this.$Progress.fail()
