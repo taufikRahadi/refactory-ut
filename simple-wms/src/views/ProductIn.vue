@@ -46,7 +46,7 @@
             form: {
                 id: '',
                 date: new Date(),
-                stock: 0,
+                total: 0,
                 product_id: ''
             }
         }),
@@ -57,7 +57,7 @@
             resetData(data) {
                 this.form = {
                     date: new Date(),
-                    stock: 0,
+                    total: 0,
                     product_id: ''
                 }
             }

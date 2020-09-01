@@ -53,7 +53,7 @@ export default {
             photo: null
         },
         columns: [
-            'name', 'stock', 'price', 'created at'
+            'name', 'stock', 'price', 'supplier name'
         ]
     }),
 

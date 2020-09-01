@@ -26,7 +26,7 @@ export default {
         async createData({ dispatch }, payload) {
             try {
                 const { data } = await http.post('product', { data: payload })
-                dispatch('findAll')
+                dispatch('fetchAll')
                 return data
             } catch ({ response }) {
                 throw new Error(response.data.message)
@@ -36,7 +36,7 @@ export default {
         async updateData({ dispatch }, payload) {
             try {
                 const { data } = await http.put('product/' + payload.id, { data: payload })
-                dispatch('findAll')
+                dispatch('fetchAll')
                 return data
             } catch ({ response }) {
                 throw new Error(response.data.message)
@@ -46,7 +46,7 @@ export default {
         async destroyData({ dispatch }, payload) {
             try {
                 const { data } = await http.delete('product/' + payload.id)
-                dispatch('findAll')
+                dispatch('fetchAll')
                 return data
             } catch ({ response }) {
                 throw new Error(response.data.message)
