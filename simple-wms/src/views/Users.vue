@@ -54,6 +54,7 @@ export default {
         formComponent: () => import('../forms/UserForm'),
         form: {
             id: '',
+            username: '',
             full_name: '',
             email: '',
             password: '',
@@ -65,6 +66,7 @@ export default {
         fillData(data) {
             this.form.id = data.id
             this.form.full_name = data.full_name
+            this.form.username = data.username
             this.form.email = data.email
             this.form.phone_number = data.phone_number
             this.username = data.username
@@ -72,6 +74,7 @@ export default {
         resetData() {
             this.form = {
                 full_name: '',
+                username: '',
                 email: '',
                 password: '',
                 phone_number: '',
