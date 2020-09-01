@@ -46,7 +46,6 @@ export default {
                     'success'
                 )
             } catch (error) {
-                console.log(error)
                 this.$swal.fire(
                     'Failed',
                     'Failed print report',

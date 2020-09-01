@@ -16,7 +16,11 @@
                 />
             </template>
             <template v-slot:table-row>
-                <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(product, index) in $store.state.product.products.data" :key="product.id">
+                <tr 
+                    :class="index % 2 == 0 ? 'bg-gray-200' : ''" 
+                    v-for="(product, index) in $store.state.product.products.data" 
+                    :key="product.id"
+                >
                     <td class="px-4 py-3">
                         {{ index + 1 }}
                     </td>

@@ -3,7 +3,13 @@
         <button @click="prevPage" class="p-1 bg-white border-2 border-gray-200">
             <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-double-left w-6 h-6"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
         </button>
-        <button @click="$emit('page-click', index)" v-for="index in data.totalPages" :key="index" :class="index == currentPage ? 'text-indigo-500 bg-gray-400' : 'bg-white'" class="px-2 font-light border-2 border-gray-200">
+        <button 
+            @click="$emit('page-click', index)" 
+            v-for="index in data.totalPages" 
+            :key="index" 
+            :class="index == currentPage ? 'text-indigo-500 bg-gray-400' : 'bg-white'" 
+            class="px-2 font-light border-2 border-gray-200"
+        >
             {{ index }}
         </button>
         <button @click="nextPage" class="p-1 bg-white border-2 border-gray-200">

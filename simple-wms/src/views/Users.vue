@@ -8,7 +8,11 @@
             @reset-data="resetData"
         >
             <template v-slot:table-row>
-                <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(user, index) in $store.state.user.users.data" :key="user.id">
+                <tr 
+                    :class="index % 2 == 0 ? 'bg-gray-200' : ''" 
+                    v-for="(user, index) in $store.state.user.users.data" 
+                    :key="user.id"
+                >
                     <td class="px-4 py-3">
                         {{ index + 1 }}
                     </td>

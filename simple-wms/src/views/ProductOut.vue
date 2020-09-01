@@ -8,7 +8,11 @@
             modulename="out"
         >
             <template v-slot:table-row>
-                <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(out, index) in $store.state.out.productOut" :key="out.id">
+                <tr
+                    :class="index % 2 == 0 ? 'bg-gray-200' : ''" 
+                    v-for="(out, index) in $store.state.out.productOut" 
+                    :key="out.id"
+                >
                     <td class="px-4 py-3">
                         {{ index + 1 }}
                     </td>

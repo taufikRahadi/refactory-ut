@@ -8,7 +8,11 @@
             modulename="productIn"
         >
             <template v-slot:table-row>
-                <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(productIn, index) in $store.state.productIn.productIn.data" :key="productIn.id">
+                <tr
+                    :class="index % 2 == 0 ? 'bg-gray-200' : ''" 
+                    v-for="(productIn, index) in $store.state.productIn.productIn.data" 
+                    :key="productIn.id"
+                >
                     <td class="px-4 py-3">
                         {{ index + 1 }}
                     </td>
