@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import {router} from './router'
 import store from './store'
 import './assets/style.css'
+import './plugins/filters'
 import './plugins/globalComponent'
 import VueProgressBar from 'vue-progressbar'
 import VueTailwindPicker from 'vue-tailwind-picker'
@@ -26,6 +27,8 @@ const options = {
 Vue.use(VueProgressBar, options)
 Vue.use(VueTailwindPicker);
 Vue.use(VueSweetalert2)
+
+
 
 Vue.config.productionTip = false
 
