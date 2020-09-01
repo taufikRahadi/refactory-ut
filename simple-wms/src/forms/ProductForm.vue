@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label class="input-label">Photo</label>
-            <input type="file" @change="handleImage" class="input-group">
+            <input type="file" ref="file" @change="handleImage" class="input-group">
         </div>
     </div>
 </template>
@@ -23,8 +23,8 @@
     export default {
         props: ['formRecord'],
         methods: {
-            handleImage (e) {
-                this.formRecord.photo = e.target.files[0]
+            handleImage () {
+                this.formRecord.photo = this.$refs.file.files[0]
             }
         }
     }
