@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "tailwindcss": "^1.7.6",
-    "vue-progressbar": "^0.7.5",
-    "vue2-transitions": "^0.3.0"
-  }
-}
