@@ -11,12 +11,45 @@
 
 <script>
     export default {
-        deleteButton () {
-            console.log('Delete Pressed')
-        },
-
-        editButton () {
-            console.log('Edit Pressed')
+        props: ['record', 'formRecord', 'modulename'],
+        methods: {
+            deleteButton () {
+                this.$swal.fire({
+                    title: 'Are you sure?',
+                    text: "Deleted data cant be retrieved",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!',
+                }).then(async result => {
+                    if(result.value) {
+                        try {
+                            this.$Progress.start()
+                            await this.$store.dispatch(`${this.modulename}/destroyData`, this.record)
+                            this.$Progress.finish()
+                            this.$swal.fire(
+                                'Success',
+                                'Data deleted',
+                                'success'
+                            )
+                        } catch (err) {
+                            this.$Progress.fail()
+                            this.$swal.fire(
+                                'Error',
+                                'Error deleting data',
+                                'error'
+                            )
+                        }
+                    }
+                })
+            },
+    
+            editButton () {
+                this.$emit('fill-data', this.record)
+                this.$store.commit('setShowModal', true)
+                this.$store.commit('setIsEditing', true)
+            }
         }
     }
 </script>

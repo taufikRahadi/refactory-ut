@@ -22,10 +22,10 @@
     import { Form } from 'vform'
     export default {
         data: () => ({
-            form: new Form({
+            form: {
                 username: '',
                 password: ''
-            })
+            }
         }),
 
         methods: {
@@ -39,9 +39,10 @@
                     )
                     this.$router.push({ name: 'Home' })
                 } catch (err) {
+                    console.log(err)
                     this.$swal.fire(
                         'Failed',
-                        err,
+                        err.message,
                         'error'
                     )
                 }

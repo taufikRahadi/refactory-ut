@@ -12,20 +12,22 @@
         </div>
         <div class="mt-5">
             <card>
-                <table class="table-auto w-full">
-                    <thead class="border-t-2 border-b-2">
-                        <th class="w-auto px-4 py-2">#</th>
-                        <th class="px-4 py-2 capitalize" v-for="column in columns" :key="column">
-                            {{ column }}
-                        </th>
-                        <th class="w-auto px-4 py-2">
-                            
-                        </th>
-                    </thead>
-                    <tbody>
-                        <slot name="table-row"></slot>
-                    </tbody>
-                </table>
+                <div class=" p-5">
+                    <table class="table-auto w-full">
+                        <thead class="border-t-2 border-b-2">
+                            <th class="w-auto px-4 py-2">#</th>
+                            <th class="px-4 py-2 capitalize" v-for="column in columns" :key="column">
+                                {{ column }}
+                            </th>
+                            <th class="w-auto px-4 py-2">
+                                
+                            </th>
+                        </thead>
+                        <tbody>
+                            <slot name="table-row"></slot>
+                        </tbody>
+                    </table>
+                </div>
             </card>
             <vue-tailwind-modal
                 :showing="$store.state.isShowModal"
@@ -36,9 +38,6 @@
                 <form enctype="multipart/form-data" @submit.prevent="submitForm">
                     <component :is="formComponent" :formRecord="formRecord"></component>
                     <div class="flex justify-between mx-5">
-                        <button class="bg-gray-500 text-white px-5 py-2 capitalize rounded">
-                            close
-                        </button>
                         <button type="submit" class="bg-indigo-500 text-white px-5 py-2 capitalize rounded">
                             Submit
                         </button>
@@ -51,23 +50,67 @@
 
 <script>
     export default {
-        props: ['columns', 'formComponent', 'formRecord'],
+        props: ['columns', 'formComponent', 'formRecord', 'isLoading', 'modulename'],
 
         methods: {
-            submitForm() {
-                alert('FormSubmitted')
+            async getData() {
+                this.$Progress.start()
+                try {
+                    await this.$store.dispatch(`${this.modulename}/fetchAll`)
+                    this.$Progress.finish()
+                } catch (error) {
+                    this.$Progress.fail()
+                }
+            },
+            
+            async submitForm() {
+                if(!this.$store.state.isEditing) {
+                    try {
+                        await this.$store.dispatch(`${this.modulename}/createData`, this.formRecord)
+                        this.$swal.fire(
+                            'Success',
+                            'Data Created',
+                            'success'
+                        )
+                        this.$store.commit('setShowModal', false)
+                    } catch (error) {
+                        this.$swal.fire(
+                            'Failed',
+                            'Error creating Data',
+                            'error'
+                        )
+                    }
+                } else {
+                    this.$Progress.start()
+                    try {
+                        await this.$store.dispatch(`${this.modulename}/updateData`, this.formRecord)
+                        this.$swal.fire(
+                            'Success',
+                            'Data Updated',
+                            'success'
+                        )
+                        this.$Progress.finish()
+                        this.$store.commit('setShowModal', false)
+                    } catch (err) {
+                        this.$swal.fire(
+                            'Failed',
+                            'Error updating Data',
+                            'error'
+                        )
+                        this.$Progress.fail()
+                    }
+                }
             },
 
             showModal () {
                 this.$store.commit('setShowModal', true)
                 this.$store.commit('setIsEditing', false)
-                this.formRecord.reset()
+                this.$emit('reset-data')
             }
         },
 
         mounted() {
-            this.$Progress.start()
-            this.$Progress.finish()
+            this.getData()
         }
     }
 </script>

@@ -4,10 +4,35 @@
             :columns="columns"
             :formComponent="productForm"
             :formRecord="form"
+            :isLoading="isLoading"
+            modulename="product"
+            @reset-data="resetData"
         >
             <template v-slot:table-row>
-                <tr>
-                    
+                <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(product, index) in $store.state.product.products.data" :key="product.id">
+                    <td class="px-4 py-3">
+                        {{ index + 1 }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ product.name }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ product.stock }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ product.price }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ product.supplier.full_name }}
+                    </td>
+                    <td class="w-8">
+                        <action-button 
+                            :record="product"
+                            :formRecord="form"
+                            modulename="product"
+                            @fill-data="fillData"
+                        />
+                    </td>
                 </tr>
             </template>
         </crud-layout>
@@ -18,16 +43,36 @@
 import { Form } from 'vform'
 export default {
     data: () => ({
+        isLoading: true,
         productForm: () => import('../forms/ProductForm'),
-        form: new Form({
+        form: {
+            id: '',
             name: '',
             stock: 0,
             price: 0,
             photo: null
-        }),
+        },
         columns: [
             'name', 'stock', 'price', 'created at'
         ]
-    })
+    }),
+
+    methods: {
+        fillData (data) {
+            this.form = { ...data }
+        },
+        resetData () {
+            this.form = {
+                name: '',
+                stock: 0,
+                price: 0,
+                photo: null
+            }
+        }
+    },
+
+    async mounted () {
+        
+    }
 }
 </script>

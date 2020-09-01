@@ -4,27 +4,65 @@
             :formComponent="formComponent"
             :formRecord="form"
             :columns="columns"
+            @reset-data="resetData"
+            modulename="productIn"
         >
             <template v-slot:table-row>
-                
+                <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(productIn, index) in $store.state.productIn.productIn.data" :key="productIn.id">
+                    <td class="px-4 py-3">
+                        {{ index + 1 }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ productIn.date }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ productIn.total }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ productIn.Product.id }} - {{ productIn.Product.name }}
+                    </td>
+                    <td class="w-8">
+                        <action-button 
+                            modulename="productIn"
+                            @fill-data="fillData"
+                            :record="productIn"
+                            :formRecord="form"
+                        />
+                    </td>
+                </tr>
             </template>
         </crud-layout>
     </div>
 </template>
 
 <script>
-    import { Form } from 'vform'
+    import { mapState } from 'vuex'
     export default {
         data: () => ({
             columns: [
-                'date', 'total in', 'product'
+                'date', 'total out', 'product'
             ],
             formComponent: () => import('../forms/ProductInForm'),
-            form: new Form({
-                date: '',
-                total: 0,
-                productId: ''
-            })
-        })
+            form: {
+                id: '',
+                date: new Date(),
+                stock: 0,
+                product_id: ''
+            }
+        }),
+        methods: {
+            fillData(data) {
+                this.form = { ...data, product_id: data.Product.id }
+            },
+            resetData(data) {
+                this.form = {
+                    date: new Date(),
+                    stock: 0,
+                    product_id: ''
+                }
+            }
+        },
+        computed: {
+        }
     }
 </script>

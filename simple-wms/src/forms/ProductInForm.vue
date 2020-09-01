@@ -14,8 +14,11 @@
         </div>
         <div class="form-group">
             <label class="input-label">Product</label>
-            <select v-model="formRecord.productId" class="input-group bg-white">
+            <select v-model="formRecord.product_id" class="input-group bg-white">
                 <option value=""></option>
+                <option :selected="product.id === formRecord.product_id" v-for="product in $store.state.product.products.data" :key="product.id" :value="product.id">
+                    {{ product.id }} - {{ product.name }}
+                </option>
             </select>
         </div>
     </div>
@@ -28,6 +31,9 @@
         components: {
             VueTailwindPicker 
         },
+        async mounted() {
+            await this.$store.dispatch('product/fetchAll', '?limit=50&page=1')
+        }
     }
 </script>
 

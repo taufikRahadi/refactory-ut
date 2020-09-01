@@ -1,4 +1,4 @@
-// import http from '../helpers/http'
+import http from '../helpers/http'
 export default {
     namespaced: true,
     state: {
@@ -17,7 +17,7 @@ export default {
     actions: {
         async login ({ commit }, payload) {
             try {
-                const { data } = await payload.post('http://localhost:3000/api/v1/auth/login')
+                const { data } = await http.post('auth/login', { data: payload })
                 localStorage.setItem('access_token', data.data.token)
                 commit('setToken', data.data.token)
                 console.log(data)
@@ -28,7 +28,7 @@ export default {
 
         async signup ({ commit }, payload) {
             try {
-                const { data } = await payload.post('http://localhost:3000/api/v1/auth/signup')
+                const { data } = await http.post('auth/signup', { data: payload })
                 return data
             } catch ({ response }) {
                 throw new Error(response.data.message)

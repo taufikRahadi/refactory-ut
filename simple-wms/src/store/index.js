@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './auth'
+import product from './product'
+import user from './user'
+import out from './out'
+import productIn from './in'
 
 Vue.use(Vuex)
 
@@ -20,6 +24,10 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    auth
+    auth,
+    product,
+    user,
+    out,
+    productIn
   }
 })

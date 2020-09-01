@@ -4,27 +4,64 @@
             :formComponent="formComponent"
             :formRecord="form"
             :columns="columns"
+            @reset-data="resetData"
+            modulename="out"
         >
             <template v-slot:table-row>
-                
+                <tr :class="index % 2 == 0 ? 'bg-gray-200' : ''" v-for="(out, index) in $store.state.out.productOut" :key="out.id">
+                    <td class="px-4 py-3">
+                        {{ index + 1 }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ out.date }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ out.total }}
+                    </td>
+                    <td class="px-4 py-3">
+                        {{ out.Product.id }} - {{ out.Product.name }}
+                    </td>
+                    <td class="w-8">
+                        <action-button 
+                            modulename="out"
+                            @fill-data="fillData"
+                            :record="out"
+                            :formRecord="form"
+                        />
+                    </td>
+                </tr>
             </template>
         </crud-layout>
     </div>
 </template>
 
 <script>
-    import { Form } from 'vform'
+    import { mapState } from 'vuex'
     export default {
         data: () => ({
             columns: [
                 'date', 'total out', 'product'
             ],
             formComponent: () => import('../forms/ProductOutForm'),
-            form: new Form({
-                date: '',
+            form: {
+                id: '',
+                date: new Date(),
                 total: 0,
-                productId: ''
-            })
-        })
+                product_id: ''
+            }
+        }),
+        methods: {
+            fillData(data) {
+                console.log(data)
+                this.form = { ...data, product_id: data.Product.id }
+            },
+            resetData(data) {
+                this.form = {
+                    date: new Date(),
+                    total: 0,
+                    product_id: ''
+                }
+            }
+        },
     }
 </script>

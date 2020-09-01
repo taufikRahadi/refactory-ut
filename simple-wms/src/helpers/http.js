@@ -5,13 +5,13 @@ const baseUrl = 'http://localhost:3000/api/v1/'
 const instance = axios.create({
     baseURL: baseUrl,
     headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("access_token") 
     }
 })
 
 instance.interceptors.request.use(
     (config) => {
-        console.log(config)
         return config
     },
     (error) => {

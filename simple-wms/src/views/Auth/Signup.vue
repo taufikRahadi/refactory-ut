@@ -38,13 +38,13 @@
 import { Form } from 'vform'
 export default {
     data: () => ({
-        form: new Form({
+        form: {
             username: '',
             full_name: '',
             email: '',
             phone_number: '',
             password: ''
-        })
+        }
     }),
 
     methods: {
