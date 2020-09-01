@@ -92,7 +92,13 @@ router.beforeEach((to, from, next) => {
       return next()
     }
   } else {
-    return next()
+    if(store.getters['auth/isLoggedIn']) {
+      return next({
+        name: 'Home'
+      })
+    } else {
+      return next()
+    }
   }
 })
 
