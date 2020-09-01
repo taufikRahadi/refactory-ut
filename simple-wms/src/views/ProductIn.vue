@@ -13,10 +13,10 @@
                         {{ index + 1 }}
                     </td>
                     <td class="px-4 py-3">
-                        {{ productIn.date }}
+                        {{ productIn.date | readableDate }}
                     </td>
                     <td class="px-4 py-3">
-                        {{ productIn.total }}
+                        {{ productIn.total | stock }}
                     </td>
                     <td class="px-4 py-3">
                         {{ productIn.Product.id }} - {{ productIn.Product.name }}

@@ -13,7 +13,7 @@
                         {{ index + 1 }}
                     </td>
                     <td class="px-4 py-3">
-                        {{ user.full_name }}
+                        {{ user.full_name | capitalize }}
                     </td>
                     <td class="px-4 py-3">
                         {{ user.username }}
@@ -25,7 +25,7 @@
                         {{ user.phone_number }}
                     </td>
                     <td class="px-4 py-3">
-                        {{ user.role }}
+                        {{ user.role | capitalize }}
                     </td>
                     <td class="w-8">
                         <action-button

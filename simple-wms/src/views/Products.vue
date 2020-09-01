@@ -14,13 +14,13 @@
                         {{ index + 1 }}
                     </td>
                     <td class="px-4 py-3">
-                        {{ product.name }}
+                        {{ product.name | capitalize }}
                     </td>
                     <td class="px-4 py-3">
-                        {{ product.stock }}
+                        {{ product.stock | stock }}
                     </td>
                     <td class="px-4 py-3">
-                        {{ product.price }}
+                        {{ product.price | currency }}
                     </td>
                     <td class="px-4 py-3">
                         {{ product.supplier.full_name }}
