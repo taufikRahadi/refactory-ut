@@ -1,11 +1,11 @@
 <template>
     <div class="my-5">
-        <div class="flex justify-between">
-            <h1 class="text-4xl capitalize font-semibold">
-                {{ $route.name }}
+        <div class="flex justify-between items-center">
+            <h1 class="text-5xl capitalize font-bold text-gray-700">
+                {{ $route.name | capitalize }}
             </h1>
 
-            <button @click="showModal" class="flex bg-indigo-500 px-5 text-white rounded hover:bg-indigo-700 transition duration-500 font-bold">
+            <button @click="showModal" class="flex bg-indigo-500 h-10 px-5 text-white rounded hover:bg-indigo-700 transition duration-500 font-bold">
                 <svg viewBox="0 0 20 20" fill="currentColor" class="plus-circle w-6 h-6"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
                 <span class="ml-3">Add New</span>
             </button>
@@ -28,13 +28,11 @@
                             <slot name="table-row"></slot>
                         </tbody>
                     </table>
-                    <!-- <paginate 
-                        :page-count="20"
-                        :click-handler="nextPage"
-                        prev-text="Prev"
-                        next-text="Next"
-                        container-class="pagination"
-                    /> -->
+                    <base-pagination 
+                        :data="data"
+                        :currentPage="currentPage"
+                        @page-click="pageClick"
+                    />
                 </div>
             </card>
             <vue-tailwind-modal
@@ -68,20 +66,31 @@
             })
         },
 
+        data: () => ({
+            data: null,
+            currentPage: 1,
+        }),
+
         methods: {
             ...mapMutations({
                 setShowModal: 'setShowModal',
                 setIsEditing: 'setIsEditing',
             }),
 
-            nextPage() {
-                alert('anjing')
+            async pageClick(p) {
+                try {
+                    await this.getData(p)
+                    this.currentPage = p
+                } catch (err) {
+                    throw new Error(err)
+                }
             },
 
-            async getData() {
+            async getData(page = 1) {
                 this.$Progress.start()
                 try {
-                    await this.$store.dispatch(`${this.modulename}/fetchAll`)
+                    const data = await this.$store.dispatch(`${this.modulename}/fetchAll`, '?limit=10&page=' + page)
+                    this.data = data.data
                     this.$Progress.finish()
                 } catch (error) {
                     this.$Progress.fail()
@@ -138,8 +147,9 @@
             }
         },
 
-        mounted() {
-            this.getData()
+        async beforeMount() {
+            await this.getData()
+            console.clear()
         }
     }
 </script>

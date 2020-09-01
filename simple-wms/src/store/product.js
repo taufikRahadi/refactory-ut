@@ -10,14 +10,11 @@ export default {
         }
     },
     actions: {
-        async fetchAll({ commit }) {
+        async fetchAll({ commit }, payload = '?limit=10&page=1' ) {
             try {
-                const { data } = await http.get('product?limit=10&page=1', {
-                    headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('access_token')
-                    }
-                })
+                const { data } = await http.get('product' + payload)
                 commit('setProducts', data.data)
+                return data
             } catch ({ response }) {
                 throw new Error(response.data.message)
             }

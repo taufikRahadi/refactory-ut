@@ -18,3 +18,6 @@
     @apply appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
 }
 
+.active-class {
+    @apply font-bold text-indigo-800
+}

@@ -13,10 +13,11 @@ export default {
     actions: {
         async fetchAll({ commit }, endpoint = '?limit=10&page=1') {
             try {
-                const data = await request.fetchAll('user' + endpoint)
-                commit('setUsers', data)
-            } catch (err) {
-                throw new Error(err)
+                const { data } = await http.get('user' + endpoint)
+                commit('setUsers', data.data)
+                return data
+            } catch ({ response }) {
+                throw new Error(response.data.message)
             }
         },
 

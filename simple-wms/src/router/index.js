@@ -72,6 +72,14 @@ Vue.use(VueRouter)
           requiresAuth: true
         },
       },
+      {
+        path: 'print',
+        name: 'print report',
+        component: () => import(/* webpackChunkName: 'printreport' */'../views/Print.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      }
     ]
   },
 ]

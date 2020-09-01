@@ -40,9 +40,15 @@
 
 		async beforeMount() {
 			this.$Progress.start()
-			await this.fetchProducts('?limit=100?page=1')
-			await this.fetchUser('?limit=100?page=1')
-			this.$Progress.finish()
+			try {
+				await this.fetchProducts('?limit=100?page=1')
+				await this.fetchUser('?limit=100?page=1')
+				this.$Progress.finish()
+			} catch (err) {
+				this.$Progress.fail()
+			} finally {
+				console.clear()
+			}
 		}
 	}
 </script>
