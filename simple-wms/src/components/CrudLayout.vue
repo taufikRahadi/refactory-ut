@@ -30,7 +30,7 @@
                 </div>
             </card>
             <vue-tailwind-modal
-                :showing="$store.state.isShowModal"
+                :showing="isShowModal"
                 @close="$store.commit('setShowModal', false)"
                 :showClose="true"
                 class="h-auto"
@@ -49,10 +49,22 @@
 </template>
 
 <script>
+    import { mapState, mapActions, mapMutations } from 'vuex'
     export default {
         props: ['columns', 'formComponent', 'formRecord', 'isLoading', 'modulename'],
 
+        computed: {
+            ...mapState({
+                isShowModal: 'isShowModal',
+                isEditing: 'isEditing'
+            })
+        },
+
         methods: {
+            ...mapMutations({
+                setShowModal: 'setShowModal',
+                setIsEditing: 'setIsEditing',
+            }),
             async getData() {
                 this.$Progress.start()
                 try {
@@ -64,7 +76,7 @@
             },
             
             async submitForm() {
-                if(!this.$store.state.isEditing) {
+                if(!this.isEditing) {
                     try {
                         await this.$store.dispatch(`${this.modulename}/createData`, this.formRecord)
                         this.$swal.fire(
@@ -72,7 +84,7 @@
                             'Data Created',
                             'success'
                         )
-                        this.$store.commit('setShowModal', false)
+                        this.setShowModal(false)
                     } catch (error) {
                         this.$swal.fire(
                             'Failed',
@@ -90,7 +102,7 @@
                             'success'
                         )
                         this.$Progress.finish()
-                        this.$store.commit('setShowModal', false)
+                        this.setShowModal(false)
                     } catch (err) {
                         this.$swal.fire(
                             'Failed',
@@ -103,8 +115,8 @@
             },
 
             showModal () {
-                this.$store.commit('setShowModal', true)
-                this.$store.commit('setIsEditing', false)
+                this.setShowModal(true)
+                this.setIsEditing(false)
                 this.$emit('reset-data')
             }
         },
