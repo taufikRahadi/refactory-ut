@@ -24,8 +24,9 @@ export default {
         },
 
         async createData({ dispatch }, payload) {
+            console.log
             try {
-                const { data } = await http.post('product', { data: payload })
+                const { data } = await http.post('product', payload )
                 dispatch('fetchAll')
                 return data
             } catch ({ response }) {
@@ -34,8 +35,9 @@ export default {
         },
 
         async updateData({ dispatch }, payload) {
+            console.log(payload)
             try {
-                const { data } = await http.put('product/' + payload.id, { data: payload })
+                const { data } = await http.put('product/' + payload.id, payload.data)
                 dispatch('fetchAll')
                 return data
             } catch ({ response }) {
