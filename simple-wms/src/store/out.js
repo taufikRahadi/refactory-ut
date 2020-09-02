@@ -14,7 +14,7 @@ export default {
         async fetchAll({ commit }, payload = '?limit=10&page=1') {
             try {
                 const { data } = await http.get('out' + payload)
-                commit('setProductOut', data.data.data)
+                commit('setProductOut', data.data)
                 return data
             } catch ({ response }) {
                 throw new Error(response.data.message)

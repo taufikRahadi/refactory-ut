@@ -8,7 +8,7 @@
 						Products
 					</h3>
 					<h3 class="font-light text-md">
-						{{ $store.state.product.products.totalItems }}
+						{{ products.totalItems }}
 					</h3>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 						User
 					</h3>
 					<h3 class="font-light text-md">
-						{{ $store.state.user.users.totalItems }}
+						{{ users.totalItems}}
 					</h3>
 				</div>
 			</div>
@@ -31,6 +31,12 @@
 	import { mapState, mapActions } from 'vuex'
 	export default {
 		
+		computed: {
+			...mapState('user', ['users']),
+			
+			...mapState('product', ['products'])
+		},
+
 		methods: {
 			...mapActions({
 				fetchProducts: 'product/fetchAll',
@@ -46,8 +52,6 @@
 				this.$Progress.finish()
 			} catch (err) {
 				this.$Progress.fail()
-			} finally {
-				console.clear()
 			}
 		}
 	}

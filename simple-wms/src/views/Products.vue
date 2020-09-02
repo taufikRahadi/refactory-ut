@@ -18,7 +18,7 @@
             <template v-slot:table-row>
                 <tr 
                     :class="index % 2 == 0 ? 'bg-gray-200' : ''" 
-                    v-for="(product, index) in $store.state.product.products.data" 
+                    v-for="(product, index) in products.data" 
                     :key="product.id"
                 >
                     <td class="px-4 py-3">
@@ -57,6 +57,7 @@
 <script>
 import http from '../helpers/http'
 import DetailProduct from '../components/Product/DetailProduct'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
     components: {
         DetailProduct,
@@ -77,25 +78,33 @@ export default {
         product: null       
     }),
 
+    computed: {
+        ...mapState('product', ['products']),
+        ...mapState(['isEditing'])
+    },
+
     methods: {
+        ...mapMutations(['setShowModal']),
+        ...mapActions('product', ['fetchAll', 'updateData', 'createData']),
+
         async submitAction () {
             this.$Progress.start()
             const formData = new FormData()
-            if (this.$store.state.isEditing) {
+            if (this.isEditing) {
                 formData.append('id', this.form.id)
                 formData.append('name', this.form.name)
                 formData.append('stock', this.form.stock)
                 formData.append('price', this.form.price)
                 formData.append('photo', this.form.photo)
                 try {
-                    await this.$store.dispatch('product/updateData', { id: this.form.id, data: formData })
+                    await this.updateData({ id: this.form.id, data: formData })
                     this.$Progress.finish()
                     this.$swal.fire(
                         'Success',
                         'Data Updated',
                         'success'
                     )
-                    this.$store.commit('setShowModal', false)
+                    this.setShowModal(false)
                 } catch (err) {
                     this.$Progress.fail()
                     this.$swal.fire(
@@ -110,14 +119,14 @@ export default {
                 formData.append('price', this.form.price)
                 formData.append('photo', this.form.photo)
                 try {
-                    await this.$store.dispatch('product/createData', formData)
+                    await this.createData(formData)
                     this.$Progress.finish()
                     this.$swal.fire(
                         'Success',
                         'Data Created',
                         'success'
                     )
-                    this.$store.commit('setShowModal', false)
+                    this.setShowModal(false)
                 } catch (err) {
                     this.$Progress.fail()
                     this.$swal.fire(

@@ -37,7 +37,7 @@
             </card>
             <vue-tailwind-modal
                 :showing="isShowModal"
-                @close="$store.commit('setShowModal', false)"
+                @close="setShowModal(false)"
                 :showClose="true"
                 class="h-auto"
             >
@@ -63,7 +63,13 @@
             ...mapState({
                 isShowModal: 'isShowModal',
                 isEditing: 'isEditing'
-            })
+            }),
+            module () {
+                return {
+                    action: this.modulename + '/fetchAll',
+                    module: this.modulename
+                }
+            }
         },
 
         data: () => ({
@@ -149,7 +155,7 @@
 
         async beforeMount() {
             await this.getData()
-            console.clear()
+            // console.clear()
         }
     }
 </script>

@@ -10,7 +10,7 @@
             <template v-slot:table-row>
                 <tr
                     :class="index % 2 == 0 ? 'bg-gray-200' : ''" 
-                    v-for="(out, index) in $store.state.out.productOut" 
+                    v-for="(out, index) in productOut.data" 
                     :key="out.id"
                 >
                     <td class="px-4 py-3">
@@ -55,6 +55,9 @@
                 product_id: ''
             }
         }),
+        computed: {
+            ...mapState('out', ['productOut'])
+        },
         methods: {
             fillData(data) {
                 console.log(data)

@@ -10,7 +10,7 @@
             <template v-slot:table-row>
                 <tr 
                     :class="index % 2 == 0 ? 'bg-gray-200' : ''" 
-                    v-for="(user, index) in $store.state.user.users.data" 
+                    v-for="(user, index) in users.data" 
                     :key="user.id"
                 >
                     <td class="px-4 py-3">
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     data: () => ({
         columns: [
@@ -62,6 +63,9 @@ export default {
             username: ''
         }
     }),
+    computed: {
+        ...mapState('user', ['users'])
+    },
     methods: {
         fillData(data) {
             this.form.id = data.id

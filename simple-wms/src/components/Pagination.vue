@@ -20,9 +20,14 @@
 
 <script>
 export default {
-    props: [
-        'data', 'currentPage'
-    ],
+    props: {
+        data: {
+            totalPages: 1
+        },
+        currentPage: {
+            default: 1,
+        }
+    },
 
     methods: {
         prevPage() {
