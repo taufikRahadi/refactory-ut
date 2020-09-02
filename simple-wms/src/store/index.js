@@ -5,6 +5,9 @@ import product from './product'
 import user from './user'
 import out from './out'
 import productIn from './in'
+import http from '../helpers/http'
+
+http.defaults.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
 
 Vue.use(Vuex)
 
