@@ -1,3 +1,5 @@
+import string
+
 # No 1
 print('Nomor 1')
 first = ['Behind', 'every', 'great', 'man']
@@ -85,4 +87,23 @@ def masking(text):
 print(masking(secret_text))
 
 # No 6
+def missing_letter(arr):
+    charset = string.ascii_lowercase if arr[0] == 'a' else string.ascii_uppercase
+    for char in charset[charset.index(arr[0]):]:
+        if char not in arr:
+            return char[0]
 
+list_letters_first = ["a","b","c","d","e","g","h"]
+list_letters_second = ["X","Z"]
+
+print('list_letters_first = ' + missing_letter(list_letters_first))
+print('list_letters_second = ' + missing_letter(list_letters_second))
+
+# Nomor 7
+print('Nomor 7')
+def sort_odd(num):
+    odds = iter(sorted(i for i in num if i % 2))
+    return [next(odds) if i % 2 else i for i in num]
+
+numbers = [9,4,2,4,1,5,3,0]
+print(sort_odd(numbers))
