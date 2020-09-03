@@ -1,0 +1,17 @@
+[2020-09-03T20:25:08.093231] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:25:20.941042] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:25:26.199541] INFO This is an information about something. 
+[2020-09-03T20:25:26.694859] ALERT Achtung! achtung! 
+[2020-09-03T20:25:27.279126] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:26:48.810298] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:27:29.453367] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:27:44.708828] DEBUG This is debug message. 
+[2020-09-03T20:27:49.792534] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:27:50.320855] INFO This is an information about something. 
+[2020-09-03T20:27:50.987583] INFO This is an information about something. 
+[2020-09-03T20:27:51.487208] INFO This is an information about something. 
+[2020-09-03T20:27:52.029604] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:27:52.571927] ALERT Achtung! achtung! 
+[2020-09-03T20:27:53.151174] ERROR We cant divide any numbers by zero. 
+[2020-09-03T20:27:53.601772] NOTICE Someone loves your status. 
+[2020-09-03T20:27:54.171188] NOTICE Someone loves your status. 
