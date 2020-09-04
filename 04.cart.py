@@ -6,6 +6,14 @@ class Cart:
     def add_item(self, item):
         self.items.append(item)
         return self
+    
+    def total_price(self):
+        total = reduce((lambda x, y: x + y), (item['price'] * item['quantity'] for item in self.items))
+        return total
+
+    def total_quantity(self):
+        total = reduce((lambda x, y: x + y), (item['quantity'] for item in self.items))
+        return total
 
     def filter_item(self, id):
         return self.items.index(next(i for i in self.items if i['item_id'] == id), 0)
@@ -19,23 +27,6 @@ class Cart:
     
     def total_items(self):
         return len(self.items)
-
-    def total_price(self):
-        total = []
-        for item in self.items:
-            total.append(item['price'])
-
-        # total = sum(total)
-        total = reduce((lambda x, y: x + y), total)
-        return total * (self.discount / 100)
-
-    def total_quantity(self):
-        total = []
-        for item in self.items:
-            total.append(item['quantity'])
-
-        total = reduce((lambda x, y: x + y), total)
-        return total
 
     def checkout(self):
         with open('cart.txt', 'w') as f:
