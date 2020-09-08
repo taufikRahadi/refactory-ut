@@ -83,23 +83,28 @@ def obfuscate(string):
 
 @cli.command(name="random")
 @click.option('--length', default=32, help="String length")
-@click.option('--letters', default=True, help="option to choose if u want string contains letter")
-@click.option('--lowercase')
-@click.option('--uppercase')
-@click.option('--numbers')
+@click.option('--letters', default=True, type=click.BOOL, help="option to choose if u want string contains letter")
+@click.option('--lowercase', type=click.BOOL)
+@click.option('--uppercase', type=click.BOOL)
+@click.option('--numbers', type=click.BOOL)
 def random(length, letters, lowercase, uppercase, numbers):
-    char = ''
-    if letters != False:
+    char = string.ascii_uppercase + string.ascii_lowercase + string.digits
+    if numbers == False:
+        char = string.ascii_lowercase + string.ascii_uppercase
+    if letters:
         if lowercase:
             char = char.lower()
         if uppercase:
             char = char.upper()
         else:
-            char += string.ascii_uppercase + string.ascii_lowercase + string.digits
-    if numbers:
+            char = char
+    else:
         char = string.digits
-    
     print(''.join(secrets.choice(char) for _ in range(length)))
+    print(lowercase)
+    print(uppercase)
+    print(letters)
+    print(numbers)
 
 @cli.command(name="ip")
 def ip():
