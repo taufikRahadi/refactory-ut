@@ -101,10 +101,6 @@ def random(length, letters, lowercase, uppercase, numbers):
     else:
         char = string.digits
     print(''.join(secrets.choice(char) for _ in range(length)))
-    print(lowercase)
-    print(uppercase)
-    print(letters)
-    print(numbers)
 
 @cli.command(name="ip")
 def ip():
