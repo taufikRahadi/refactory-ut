@@ -3,9 +3,38 @@ import json
 from string import ascii_lowercase
 import random
 
+def read_file():
+    with open('users.json', 'r') as f:
+        obj = json.load(f)
+    return obj
+def write_file(data):
+    with open('users.json', 'w') as f:
+        f.write(json.dumps(data, indent=4))
+
+def filter_data(code):
+    return next(data for data in read_file() if data['code'] == code)
+
 @click.group()
 def cli():
     pass
+
+@cli.command(name="read")
+def read():
+    print(json.dumps(read_file(), indent=4))
+
+@cli.command(name="read-by-code")
+@click.argument('code', type=click.STRING)
+def read_by_code(code):
+    print(json.dumps(filter_data(code), indent=4))
+
+@cli.command(name="delete")
+@click.argument('code', type=click.STRING)
+def delete(code):
+    index = read_file().index(filter_data(code))
+    current = read_file()
+    popit = current.pop(index)
+    write_file(current)
+    print('data deleted')
 
 @cli.command(name="add")
 def add():
@@ -39,8 +68,10 @@ def add():
             "cell": cell
         }
     }
-    with open('users.json', 'a') as outfile:
-        outfile.write(json.dumps(user, indent=4))
+    current = read_file()
+    now = current.insert(len(current), user)
+    write_file(current)
+    print('data added')
 
 if __name__ == '__main__':
     cli()

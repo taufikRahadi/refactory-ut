@@ -1,3 +1,4 @@
+-e git+git@github.com:taufikRahadi/refactory-ut.git@2ffe1652652b8ca013d58d3e932450fca27652f3#egg=app
 appdirs==1.4.3
 beautifulsoup4==4.9.1
 CacheControl==0.12.6
