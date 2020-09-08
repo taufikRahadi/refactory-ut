@@ -110,5 +110,18 @@ def ip():
 def external_ip():
     print(get('http://api.ipify.org').text)
 
+@cli.command(name="sum")
+def sum_input(i = 1):
+    state = True
+    nums = []
+    while state:
+        inp = input(f'masukkan angka ke {i}:')
+        if inp != '':
+            nums.append(inp)
+            i = i+1
+        else:
+            print(f'result: {reduce(lambda a, b: a+b, list(int(n) for n in nums))}')
+            state = False
+
 if __name__ == '__main__':
     cli()
