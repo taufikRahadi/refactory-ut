@@ -1,0 +1,122 @@
+[
+  {
+    "release_date": "2012-04-25",
+    "id": 24428,
+    "vote_count": 23072,
+    "video": false,
+    "media_type": "movie",
+    "vote_average": 7.7,
+    "title": "The Avengers",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "original_title": "The Avengers",
+    "original_language": "en",
+    "adult": false,
+    "backdrop_path": "/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg",
+    "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+    "poster_path": "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg"
+  },
+  {
+    "release_date": "2018-04-25",
+    "id": 299536,
+    "vote_count": 19579,
+    "video": false,
+    "media_type": "movie",
+    "vote_average": 8.3,
+    "title": "Avengers: Infinity War",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "original_title": "Avengers: Infinity War",
+    "original_language": "en",
+    "adult": false,
+    "backdrop_path": "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+    "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+    "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
+  },
+  {
+    "release_date": "2008-04-30",
+    "id": 1726,
+    "vote_count": 19020,
+    "video": false,
+    "media_type": "movie",
+    "vote_average": 7.6,
+    "title": "Iron Man",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "original_title": "Iron Man",
+    "original_language": "en",
+    "adult": false,
+    "backdrop_path": "/vbY95t58MDArtyUXUIb8Fx1dCry.jpg",
+    "overview": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+    "poster_path": "/78lPtwv72eTNqFW9COBYI0dWDJa.jpg"
+  },
+  {
+    "release_date": "2018-04-25",
+    "id": 299536,
+    "vote_count": 19579,
+    "video": false,
+    "media_type": "movie",
+    "vote_average": 8.3,
+    "title": "Avengers: Infinity War",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "original_title": "Avengers: Infinity War",
+    "original_language": "en",
+    "adult": false,
+    "backdrop_path": "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+    "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+    "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
+  },
+  {
+    "release_date": "2016-04-27",
+    "id": 271110,
+    "vote_count": 16758,
+    "video": false,
+    "media_type": "movie",
+    "vote_average": 7.4,
+    "title": "Captain America: Civil War",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "original_title": "Captain America: Civil War",
+    "original_language": "en",
+    "adult": false,
+    "backdrop_path": "/7FWlcZq3r6525LWOcvO9kNWurN1.jpg",
+    "overview": "Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.",
+    "poster_path": "/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg"
+  },
+  {
+    "release_date": "2019-04-24",
+    "id": 299534,
+    "vote_count": 14900,
+    "video": false,
+    "media_type": "movie",
+    "vote_average": 8.3,
+    "title": "Avengers: Endgame",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "original_title": "Avengers: Endgame",
+    "original_language": "en",
+    "adult": false,
+    "backdrop_path": "/orjiB3oUIsyz60hoEqkiGpy5CeO.jpg",
+    "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+    "poster_path": "/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
+  }
+]
