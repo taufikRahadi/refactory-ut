@@ -1,4 +1,4 @@
 #/bin/bash
-TEXT=$0
+TEXT=$1
 LENGTH=${#TEXT}
 echo "Text length is $LENGTH chars"
