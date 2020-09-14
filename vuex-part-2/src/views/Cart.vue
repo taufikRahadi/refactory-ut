@@ -17,7 +17,7 @@
                   </p>
                 </h3>
                 <div class="flex h-10">
-                  <button class="btn-primary" @click="reduce(index)" :disabled="item.Quantity <= 1">
+                  <button :class="item.Quantity > 1 ? 'btn-primary' : 'btn-primary-disable'" @click="reduce(index)" :disabled="item.Quantity < 2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                   </button>
                   <span class="pb-2 px-3 pt-2 bg-gray-300 text-bold">

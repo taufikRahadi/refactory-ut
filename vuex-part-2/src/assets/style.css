@@ -30,6 +30,10 @@
   @apply btn bg-teal-500;
 }
 
+.btn-primary-disable {
+  @apply btn bg-teal-300;
+}
+
 .btn-danger {
   @apply btn bg-red-500;
 }
