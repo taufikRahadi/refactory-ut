@@ -14,7 +14,7 @@
     <div class="grid grid-cols-3 gap-4">
       <div class="col-span-2">
         <div v-if="cartItems.length > 0">
-          <div class="card mb-5" v-for="(item, index) in cartItems" :key="item.ID">
+          <div class="card mb-5" v-for="(item, index) in items" :key="item.ID">
             <div class="flex">
               <img src="https://picsum.photos/id/1/200" alt="">
               <div class="flex w-full justify-between px-3 py-5">
@@ -28,7 +28,7 @@
                   <button class="btn" @click="reduceQuantity(index)" :disabled="item.Quantity <= 1">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                   </button>
-                  <span class="p-5 bg-gray-300 text-bold">
+                  <span class="p-5 bg-gray-300 text-bold" :key="item.Quantity">
                     {{ item.Quantity }}
                   </span>
                   <button class="btn" @click="addQuantity(index)">
@@ -97,7 +97,8 @@ export default {
     })
   },
   data: () => ({
-    showAlert: false
+    showAlert: false,
+    items: null
   }),
   methods: {
     ...mapMutations(['popFromCart', 'addQuantity', 'reduceQuantity']),
@@ -109,6 +110,9 @@ export default {
         this.showAlert = false
       }, 1300)
     }
+  },
+  mounted() {
+    this.items = this.cartItems
   }
 }
 </script>

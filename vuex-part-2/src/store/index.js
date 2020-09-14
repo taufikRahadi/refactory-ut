@@ -28,11 +28,10 @@ export default new Vuex.Store({
       state.cart.splice(data, 1)
     },
     addQuantity(state, data) {
-      console.log(state.cart[data])
-      state.cart[data].Quantity += 1
+      state.cart[data].Quantity++
     },
     reduceQuantity(state, data) {
-      state.cart[data].Quantity -= 1
+      state.cart[data].Quantity--
     }
   },
   actions: {
@@ -41,14 +40,25 @@ export default new Vuex.Store({
   getters: {
     cartSubTotal: state => {
       if (state.cart.length >= 1) {
-        return state.cart.reduce((x, y) => (x.Quantity * x.Price) + (y.Quantity * y.Price))
+        let total = 0
+        state.cart.forEach(item => {
+          const i = item.Price * item.Quantity
+          total += i
+        })
+        return total
       } else {
         return 0
       }
     },
     cartTotal: state => {
       if (state.cart.length >= 1) {
-        const total = state.cart.reduce((x, y) => (x.Quantity * x.Price) + (y.Quantity * y.Price))
+        // const total = state.cart.reduce((x, y) => (x.Quantity * x.Price) + (y.Quantity * y.Price))
+        // return total - (total * state.ppn)
+        let total = 0
+        state.cart.forEach(item => {
+          const i = item.Price * item.Quantity
+          total += i
+        })
         return total - (total * state.ppn)
       } else {
         return 0
@@ -56,7 +66,13 @@ export default new Vuex.Store({
     },
     cartPPN: state => {
       if (state.cart.length >= 1) {
-        const total = state.cart.reduce((x, y) => (x.Quantity * x.Price) + (y.Quantity * y.Price))
+        // const total = state.cart.reduce((x, y) => (x.Quantity * x.Price) + (y.Quantity * y.Price))
+        // return total * state.ppn
+        let total = 0
+        state.cart.forEach(item => {
+          const i = item.Price * item.Quantity
+          total += i
+        })
         return total * state.ppn
       } else {
         return 0
