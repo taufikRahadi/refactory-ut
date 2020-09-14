@@ -17,13 +17,13 @@
                   </p>
                 </h3>
                 <div class="flex h-10">
-                  <button class="btn-primary" @click="reduceQuantity(index)" :disabled="item.Quantity <= 1">
+                  <button class="btn-primary" @click="reduce(index)" :disabled="item.Quantity <= 1">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                   </button>
-                  <span class="pb-2 px-3 pt-2 bg-gray-300 text-bold" :key="item.Quantity">
+                  <span class="pb-2 px-3 pt-2 bg-gray-300 text-bold" :key="renderElement">
                     {{ item.Quantity }}
                   </span>
-                  <button class="btn-primary" @click="addQuantity(index)">
+                  <button class="btn-primary" @click="add(index)">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                   </button>
                 </div>
@@ -92,10 +92,19 @@ export default {
   },
   data: () => ({
     showAlert: false,
-    items: null
+    items: null,
+    renderElement: 0
   }),
   methods: {
     ...mapMutations(['popFromCart', 'addQuantity', 'reduceQuantity', 'fakeCheckout']),
+    add(item) {
+      this.renderElement++
+      this.addQuantity(item)
+    },
+    reduce(item) {
+      this.renderElement--
+      this.reduceQuantity(item)
+    },
     removeItem(item) {
       const conf = confirm('Yakin Mau Dihapus ?')
       if (conf) {
