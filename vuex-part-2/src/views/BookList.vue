@@ -22,7 +22,7 @@
             <h3 class="text-gray-500 font-bold">
               {{ item.Price | currency }}
             </h3>
-            <button class="btn-primary px-5 mt-5" @click="addItemToCart(item)">
+            <button :disabled="isDisabled" class="btn-primary px-5 mt-5" @click="addItemToCart(item)">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </button>
           </div>
@@ -39,15 +39,18 @@ export default {
     ...mapState(['items'])
   },
   data: () => ({
-    showAlert: false
+    showAlert: false,
+    isDisabled: false
   }),
   methods: {
     ...mapMutations(['pushToCart']),
     addItemToCart(item) {
       this.showAlert = true
       this.pushToCart(item)
+      this.isDisabled = true
       setTimeout(() => {
         this.showAlert = false
+        this.isDisabled = false
       }, 1300)
     }
   }
