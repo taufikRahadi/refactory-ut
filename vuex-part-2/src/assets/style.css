@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-link {
+  @apply font-bold text-lg px-5 py-1;
+}
+
+.router-link-exact-active {
+  @apply rounded shadow bg-blue-200 text-white;
+}
+
+.card {
+  @apply rounded relative bg-white shadow overflow-hidden;
+}
+
+.card-img {
+  @apply w-full object-cover;
+}
+
+.badge {
+  @apply bg-gray-100 text-gray-500 text-xs font-bold uppercase rounded-full p-2 absolute top-0 ml-2 mt-2;
+}
+
+.btn {
+  @apply rounded shadow bg-blue-300 font-bold transition-all duration-500 text-white px-5 py-1;
+}
+
+.btn:hover {
+  @apply transform scale-110;
+}
