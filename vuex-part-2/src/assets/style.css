@@ -23,9 +23,17 @@
 }
 
 .btn {
-  @apply rounded shadow bg-blue-300 font-bold transition-all duration-500 text-white px-5 py-1;
+  @apply rounded shadow font-bold transition-all duration-500 text-white py-1;
 }
 
-.btn:hover {
+.btn-primary {
+  @apply btn bg-teal-500;
+}
+
+.btn-danger {
+  @apply btn bg-red-500;
+}
+
+.btn-danger:hover, .btn-primary:hover {
   @apply transform scale-110;
 }

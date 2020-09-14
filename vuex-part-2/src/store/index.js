@@ -32,6 +32,9 @@ export default new Vuex.Store({
     },
     reduceQuantity(state, data) {
       state.cart[data].Quantity--
+    },
+    fakeCheckout(state) {
+      state.cart = []
     }
   },
   actions: {
