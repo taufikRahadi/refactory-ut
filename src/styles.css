@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 80%;
+  margin: 0px auto;
+}
+
+.proj-box:hover {
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.dot {
+  padding: 10px 20px;
+  background-color: #4A90E2;
+  border-radius: 50%;
+}
