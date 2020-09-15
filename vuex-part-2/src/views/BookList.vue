@@ -4,6 +4,7 @@
       alertTitle="Berhasil menambahkan ke keranjang"
       :gridGap="5"
       :showAlert="showAlert"
+      v-if="items.length"
     >
       <base-card v-for="item in items" :key="item.ID">
         <img :src="`https://picsum.photos/id/${item.ID}/400/400`" class="card-img">
@@ -29,6 +30,13 @@
         </div>
       </base-card>
     </card-list>
+
+    <div class="flex flex-col justify-center items-center" v-else>
+      <img src="@/assets/empty-cart.svg" class="h-64" alt="">
+      <h3 class="font-bold text-lg">
+        Kosong ~
+      </h3>
+    </div>
   </div>
 </template>
 

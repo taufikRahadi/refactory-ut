@@ -9,6 +9,7 @@
           </h3>
         </div>
         <div class="flex justify-end w-full">
+          <input v-show="$route.name === 'book list'" @keyup="$store.dispatch('searchData', search)" v-model="search" type="text" class="text-white focus:bg-white focus:text-gray-700 px-4 rounded-full w-30 bg-transparent border-2 border-gray-400 mr-5" placeholder="Search ...">
           <router-link class="nav-link" :to="{ name: 'book list' }">
             Books
           </router-link>
@@ -23,6 +24,8 @@
 
 <script>
 export default {
-  
+  data: () => ({
+    search: ''
+  })
 }
 </script>

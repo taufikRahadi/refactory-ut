@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import data from '../data'
+import books from '../data'
 const fs = require('fs')
 
 Vue.use(Vuex)
@@ -11,7 +11,7 @@ export default new Vuex.Store({
     ppn: 0.1
   },
   mutations: {
-    setItems(state) {
+    setItems(state, data = books) {
       state.items = data
     },
     pushToCart(state, data) {
@@ -39,7 +39,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    
+    searchData({ commit }, query) {
+      const filteredItems = books.filter(val => val.Title.toLowerCase().includes(query.toLowerCase()) || val.Description.toLowerCase().includes(query.toLowerCase()))
+      commit('setItems', filteredItems)
+    }
   },
   getters: {
     cartSubTotal: state => {

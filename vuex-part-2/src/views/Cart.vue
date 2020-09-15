@@ -69,7 +69,7 @@
             </p>
           </div>
         </div>
-        <button class="btn-primary px-5 w-full mt-2" @click="checkout">
+        <button :disabled="!cartItems.length" :class="cartItems.length ? 'btn-primary' : 'btn-primary-disable'" class="px-5 w-full mt-2" @click="checkout">
           Checkout
         </button>
       </div>
