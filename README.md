@@ -1,3 +1,8 @@
-<h2> Submission Test Refactory Bootcamp - Taufik Rahadi <img src="https://media.giphy.com/media/mGcNjsfWAjY5AEZNw6/giphy.gif" width="50"></h2>
+# Kubernetes
+membuat sebuah aplikasi kubernates yang bisa di akses melalui
 
-<p>Checkout branch to see different tests</p>
+- nodeport
+- loadbalancer
+- ingress
+
+buat sebuah langkah-langkah pembuatan, step-by step dokumentasi config-nya hingga bisa di lihat dan di akses dalam format makrdown
