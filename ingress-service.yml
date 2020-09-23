@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: docker-cv
+  labels:
+    name: docker-cv
+spec:
+  containers:
+    - name: docker-cv
+      image: taufik1/docker-cv:v1
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-service
+spec:
+  selector:
+    name: docker-cv
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: cv-ingress
+  labels:
+    name: cv-ingress
+spec:
+  rules:
+    - host: docker-cv.test
+      http:
+        paths:
+          - path: /
+            backend: 
+              serviceName: ingress-service
+              servicePort: 80
